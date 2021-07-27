@@ -149,7 +149,7 @@
   \gdef\@artigo{a}
   \fi
   \gdef\@degnameen{Bachelor in Information Sciences}
-  \gdef\@monopt{Dissertação}
+  \gdef\@monopt{Monografia}
   \gdef\@monoes{Dissertacíon}
   \gdef\@monoen{Monograph}
 }
@@ -441,7 +441,7 @@
     \begin{minipage}[t]{0.5\textwidth}
       \supresshyphen
       Este exemplar corresponde à versão da \@monopt\xspace entregue
-      à banca antes da defesa.
+      antes do parecer da banca.
     \end{minipage}
   \fi
   \vfill
@@ -520,7 +520,7 @@
     \vfill
   \else
     Na versão final, esta página será substituída por outra
-    informando a composição da banca e que a ata de defesa está arquivada
+    informando a composição da banca e que a ata do parecer da banca está arquivada
     pela Unicamp.
   \fi
 }
