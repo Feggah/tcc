@@ -23,7 +23,7 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - name: Build Android App
-        run: flutter build apk --split-per-abi
+        run: flutter build apk --obfuscate --split-debug-info --split-per-abi
       - name: Build iOS App
         run: |
           flutter build ios --no-codesign
@@ -33,9 +33,9 @@ jobs:
           ln -s ../Runner.app
           cd ..
           zip -r app.ipa Payload
-      - name: Export Release Timestamp
+      - name: Create release name and tag
         run: echo "APP_VERSION=release_$(date +'%Y-%m-%d_%H-%m-%S')" >> $GITHUB_ENV
-      - name: Release Apps
+      - name: Release builds
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ env.APP_VERSION }}
