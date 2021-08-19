@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'location_bloc.dart';
 
@@ -32,6 +33,11 @@ mixin _$LocationEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadHomeScreen,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
     required TResult orElse(),
@@ -40,6 +46,11 @@ mixin _$LocationEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadHomeScreen value) loadHomeScreen,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadHomeScreen value)? loadHomeScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -114,6 +125,14 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadHomeScreen,
+  }) {
+    return loadHomeScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
     required TResult orElse(),
@@ -130,6 +149,14 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
     required TResult Function(_LoadHomeScreen value) loadHomeScreen,
   }) {
     return loadHomeScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+  }) {
+    return loadHomeScreen?.call(this);
   }
 
   @override
@@ -188,6 +215,14 @@ mixin _$LocationState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(List<Location> locations)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
@@ -202,6 +237,14 @@ mixin _$LocationState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LoadFailure value) loadFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -279,6 +322,17 @@ class _$_Empty implements _Empty {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(List<Location> locations)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
@@ -301,6 +355,17 @@ class _$_Empty implements _Empty {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+  }) {
+    return empty?.call(this);
   }
 
   @override
@@ -370,6 +435,17 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(List<Location> locations)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
@@ -392,6 +468,17 @@ class _$_Loading implements _Loading {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -487,6 +574,17 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(List<Location> locations)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+  }) {
+    return loaded?.call(locations);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
@@ -509,6 +607,17 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+  }) {
+    return loaded?.call(this);
   }
 
   @override
@@ -618,6 +727,17 @@ class _$_LoadFailure implements _LoadFailure {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(List<Location> locations)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+  }) {
+    return loadFailure?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
@@ -640,6 +760,17 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return loadFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+  }) {
+    return loadFailure?.call(this);
   }
 
   @override

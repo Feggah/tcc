@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  auto_route: ^2.3.0
   cloud_firestore: ^2.4.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
@@ -27,6 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: ^2.3.0
   build_runner:
   flutter_launcher_icons: ^0.9.1
   freezed: ^0.14.2
@@ -45,3 +47,7 @@ flutter:
     - secret.json
     - images/server_error.svg
     - images/location_not_found.svg
+
+dependency_overrides:
+  meta: ^1.7.0
+  test_api: ^0.4.2
