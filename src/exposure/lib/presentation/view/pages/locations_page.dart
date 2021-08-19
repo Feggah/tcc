@@ -1,4 +1,5 @@
 import 'package:exposure/injection.dart';
+import 'package:exposure/presentation/view/widgets/home_search.dart';
 import 'package:exposure/presentation/view/widgets/location_empty.dart';
 import 'package:exposure/presentation/view/widgets/location_error.dart';
 import 'package:exposure/presentation/view/widgets/location_list.dart';
@@ -33,9 +34,7 @@ class LocationsPage extends StatelessWidget {
               size: 34,
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 30),
-            Placeholder(
-              fallbackHeight: MediaQuery.of(context).size.height / 18.5,
-            ),
+            const HomeSearch(),
             SizedBox(height: MediaQuery.of(context).size.height / 18.5),
             const MainText(
               title: "Visitados nas últimas semanas",
