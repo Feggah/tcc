@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:exposure/presentation/routes/router.gr.dart';
 import 'package:exposure/presentation/view/colors.dart';
 import 'package:exposure/presentation/view/widgets/secondary_text.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,9 @@ class HomeSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        AutoRouter.of(context).push(const SearchPageRoute());
+      },
       child: Container(
         height: MediaQuery.of(context).size.height / 18.5,
         decoration: BoxDecoration(
