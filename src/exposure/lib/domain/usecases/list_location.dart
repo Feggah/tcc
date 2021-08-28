@@ -6,13 +6,13 @@ import 'package:exposure/shared/usecase.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton()
-class ListLocation implements UseCase<Future> {
+class ListLocation implements UseCase<Future, NoParams> {
   final ILocationRepository repository;
 
   ListLocation(this.repository);
 
   @override
-  Future<Either<Failure, List<Location>>> call() {
+  Future<Either<Failure, List<Location>>> call(NoParams params) {
     return repository.listLocation();
   }
 }

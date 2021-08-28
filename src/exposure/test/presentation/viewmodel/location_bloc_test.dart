@@ -5,6 +5,7 @@ import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/domain/usecases/list_location.dart';
 import 'package:exposure/presentation/viewmodel/location_bloc.dart';
 import 'package:exposure/shared/failures.dart';
+import 'package:exposure/shared/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -26,6 +27,10 @@ void main() {
 
   final List<Location> tList = [tLocation];
 
+  setUpAll(() {
+    registerFallbackValue(NoParams());
+  });
+
   setUp(() {
     mockListLocationUseCase = MockListLocationUseCase();
     bloc = LocationBloc(listLocation: mockListLocationUseCase);
@@ -37,7 +42,7 @@ void main() {
 
   group("loadHomeScreen", () {
     test("should emit [loading, loadFailure] when an error occur", () async {
-      when(() => mockListLocationUseCase()).thenAnswer(
+      when(() => mockListLocationUseCase(any())).thenAnswer(
         (_) async => const Left(Failure.internalError()),
       );
       const expected = [
@@ -51,7 +56,7 @@ void main() {
     test(
       'should emit [Loading, Loaded] when data is gotten successfully and it is greater than zero',
       () async {
-        when(() => mockListLocationUseCase()).thenAnswer(
+        when(() => mockListLocationUseCase(any())).thenAnswer(
           (_) async => Right(tList),
         );
         final expected = [
@@ -68,7 +73,7 @@ void main() {
     test(
       'should emit [Loading, Empty] when data is gotten successfully and it is equal to zero',
       () async {
-        when(() => mockListLocationUseCase()).thenAnswer(
+        when(() => mockListLocationUseCase(any())).thenAnswer(
           (_) async => const Right([]),
         );
         final expected = [

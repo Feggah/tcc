@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
-import 'package:exposure/data/datasources/i_location_datasource.dart';
+import 'package:exposure/data/datasources/i_firebase_datasource.dart';
+import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/models/location_model.dart';
 import 'package:exposure/data/repositories/location_repository_impl.dart';
 import 'package:exposure/shared/exceptions.dart';
@@ -10,13 +11,16 @@ import 'package:exposure/shared/network_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockLocationDataSource extends Mock implements ILocationDataSource {}
+class MockFirebaseDataSource extends Mock implements IFirebaseDataSource {}
+
+class MockGoogleDataSource extends Mock implements IGoogleDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
   late LocationRepositoryImpl repository;
-  late MockLocationDataSource mockLocationDataSource;
+  late MockFirebaseDataSource mockFirebaseDataSource;
+  late MockGoogleDataSource mockGoogleDataSource;
   late MockNetworkInfo mockNetworkInfo;
 
   final tLocationModel = LocationModel(
@@ -34,11 +38,13 @@ void main() {
   final List<LocationModel> listModel = [tLocationModel];
 
   setUp(() {
-    mockLocationDataSource = MockLocationDataSource();
+    mockFirebaseDataSource = MockFirebaseDataSource();
     mockNetworkInfo = MockNetworkInfo();
+    mockGoogleDataSource = MockGoogleDataSource();
     repository = LocationRepositoryImpl(
-      dataSource: mockLocationDataSource,
+      firebaseDataSource: mockFirebaseDataSource,
       networkInfo: mockNetworkInfo,
+      googleDataSource: mockGoogleDataSource,
     );
   });
 
@@ -65,7 +71,7 @@ void main() {
   group("ListLocation", () {
     test("should check if device is online", () async {
       when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-      when(() => mockLocationDataSource.listLocation())
+      when(() => mockFirebaseDataSource.listLocation())
           .thenAnswer((_) async => []);
 
       await repository.listLocation();
@@ -78,12 +84,12 @@ void main() {
         "should return list of location when the call to data source is successful",
         () async {
           // arrange
-          when(() => mockLocationDataSource.listLocation())
+          when(() => mockFirebaseDataSource.listLocation())
               .thenAnswer((_) async => listModel);
           // act
           final result = await repository.listLocation();
           // assert
-          verify(() => mockLocationDataSource.listLocation());
+          verify(() => mockFirebaseDataSource.listLocation());
           expect(result, equals(Right(listModel)));
         },
       );
@@ -92,12 +98,12 @@ void main() {
         'should return server failure when the call to data source is unsuccessful',
         () async {
           // arrange
-          when(() => mockLocationDataSource.listLocation())
+          when(() => mockFirebaseDataSource.listLocation())
               .thenThrow(ServerException());
           // act
           final result = await repository.listLocation();
           // assert
-          verify(() => mockLocationDataSource.listLocation());
+          verify(() => mockFirebaseDataSource.listLocation());
           // verifyZeroInteractions(mockLocationDataSource);
           expect(result, equals(const Left(Failure.internalError())));
         },
@@ -110,7 +116,7 @@ void main() {
           // act
           final result = await repository.listLocation();
           // assert
-          verifyZeroInteractions(mockLocationDataSource);
+          verifyZeroInteractions(mockFirebaseDataSource);
           verify(() => mockNetworkInfo.isConnected);
           expect(result, equals(const Left(Failure.noInternetConnection())));
         },

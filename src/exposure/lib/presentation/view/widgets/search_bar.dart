@@ -1,5 +1,7 @@
 import 'package:exposure/presentation/view/colors.dart';
+import 'package:exposure/presentation/viewmodel/search_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar() : super();
@@ -15,10 +17,10 @@ class SearchBar extends StatelessWidget {
         border: Border.all(color: CustomColor.cardBorder),
       ),
       padding: const EdgeInsets.only(left: 22),
-      child: const TextField(
+      child: TextField(
         autofocus: true,
-        style: TextStyle(fontFamily: "Roboto"),
-        decoration: InputDecoration(
+        style: const TextStyle(fontFamily: "Roboto"),
+        decoration: const InputDecoration(
           border: InputBorder.none,
           icon: Icon(
             Icons.search,
@@ -26,6 +28,10 @@ class SearchBar extends StatelessWidget {
           ),
           hintText: "Pesquisar",
         ),
+        onChanged: (String text) {
+          BlocProvider.of<SearchBloc>(context)
+              .add(SearchEvent.textChanged(text));
+        },
       ),
     );
   }

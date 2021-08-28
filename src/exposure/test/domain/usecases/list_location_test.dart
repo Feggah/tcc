@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/domain/repositories/i_location_repository.dart';
 import 'package:exposure/domain/usecases/list_location.dart';
+import 'package:exposure/shared/usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -33,7 +34,7 @@ void main() {
       when(() => mockLocationRepository.listLocation())
           .thenAnswer((_) async => Right(tList));
       // act
-      final result = await usecase();
+      final result = await usecase(NoParams());
       // assert
       expect(result, Right(tList));
       verify(() => mockLocationRepository.listLocation());

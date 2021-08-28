@@ -21,5 +21,5 @@ abstract class RegisterThirdParties {
       InternetConnectionChecker();
 
   @lazySingleton
-  Dio get client => Dio(BaseOptions(responseType: ResponseType.bytes));
+  Dio get client => Dio();
 }

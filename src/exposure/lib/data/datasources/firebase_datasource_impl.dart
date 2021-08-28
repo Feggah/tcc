@@ -1,19 +1,19 @@
-import 'package:exposure/data/datasources/i_location_datasource.dart';
-import 'package:exposure/data/datasources/i_photo_datasource.dart';
+import 'package:exposure/data/datasources/i_firebase_datasource.dart';
+import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/models/location_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: ILocationDataSource)
-class LocationDataSourceImpl implements ILocationDataSource {
+@LazySingleton(as: IFirebaseDataSource)
+class FirebaseDataSourceImpl implements IFirebaseDataSource {
   final FirebaseFirestore firestore;
-  final IPhotoDataSource photoDataSource;
+  final IGoogleDataSource googleDataSource;
 
-  LocationDataSourceImpl({
+  FirebaseDataSourceImpl({
     required this.firestore,
-    required this.photoDataSource,
+    required this.googleDataSource,
   });
 
   @override
@@ -27,7 +27,8 @@ class LocationDataSourceImpl implements ILocationDataSource {
       final List<LocationModel> list = [];
       for (final document in snapshot.docs) {
         final LocationModel model = LocationModel.fromFirestore(document);
-        model.image = await photoDataSource.getPhotoImage(model.photoReference);
+        model.image =
+            await googleDataSource.getPhotoImage(model.photoReference);
         list.add(model);
       }
       return list;
