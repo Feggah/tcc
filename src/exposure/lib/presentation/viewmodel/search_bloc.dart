@@ -25,20 +25,21 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async* {
     yield* event.map(
       textChanged: (e) async* {
-        yield const SearchState.loading();
-        final failureOrItems = await searchLocation(Params(name: e.text));
-        yield failureOrItems.fold(
-          (failure) => SearchState.loadFailure(failure),
-          (items) {
-            if (e.text.isEmpty) {
-              return const SearchState.initial();
-            }
-            if (items.isEmpty) {
-              return const SearchState.notFound();
-            }
-            return SearchState.loaded(items);
-          },
-        );
+        if (e.text.isEmpty) {
+          yield const SearchState.initial();
+        } else {
+          yield const SearchState.loading();
+          final failureOrItems = await searchLocation(Params(name: e.text));
+          yield failureOrItems.fold(
+            (failure) => SearchState.loadFailure(failure),
+            (items) {
+              if (items.isEmpty) {
+                return const SearchState.notFound();
+              }
+              return SearchState.loaded(items);
+            },
+          );
+        }
       },
     );
   }
