@@ -16,7 +16,9 @@ class MockDio extends Mock implements Dio {}
 class MockSecret extends Mock implements ISecretDataSource {}
 
 class MockLocationSearchItemModel extends Mock
-    implements LocationSearchItemModel {}
+    implements
+        // ignore: avoid_implementing_value_types
+        LocationSearchItemModel {}
 
 void main() {
   late GoogleDataSourceImpl googleDataSource;
