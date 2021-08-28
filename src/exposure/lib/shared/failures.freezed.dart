@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
 
@@ -37,6 +38,12 @@ mixin _$Failure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? internalError,
+    TResult Function()? noInternetConnection,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
@@ -47,6 +54,12 @@ mixin _$Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(InternalError value) internalError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InternalError value)? internalError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,6 +133,15 @@ class _$InternalError implements InternalError {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? internalError,
+    TResult Function()? noInternetConnection,
+  }) {
+    return internalError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
@@ -138,6 +160,15 @@ class _$InternalError implements InternalError {
     required TResult Function(NoInternetConnection value) noInternetConnection,
   }) {
     return internalError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InternalError value)? internalError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+  }) {
+    return internalError?.call(this);
   }
 
   @override
@@ -206,6 +237,15 @@ class _$NoInternetConnection implements NoInternetConnection {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? internalError,
+    TResult Function()? noInternetConnection,
+  }) {
+    return noInternetConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
@@ -224,6 +264,15 @@ class _$NoInternetConnection implements NoInternetConnection {
     required TResult Function(NoInternetConnection value) noInternetConnection,
   }) {
     return noInternetConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InternalError value)? internalError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+  }) {
+    return noInternetConnection?.call(this);
   }
 
   @override

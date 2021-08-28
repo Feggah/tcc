@@ -2,8 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
-import 'package:exposure/data/datasources/location_datasource_impl.dart';
-import 'package:exposure/data/datasources/photo_datasource_impl.dart';
+import 'package:exposure/data/datasources/firebase_datasource_impl.dart';
+import 'package:exposure/data/datasources/google_datasource_impl.dart';
 import 'package:exposure/data/datasources/secret_datasource_impl.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,8 +16,8 @@ class MockDio extends Mock implements Dio {}
 
 void main() {
   late MockFirebaseFirestore mockFirebaseFirestore;
-  late LocationDataSourceImpl locationDataSource;
-  late PhotoDataSourceImpl photoDataSource;
+  late FirebaseDataSourceImpl firebaseDataSource;
+  late GoogleDataSourceImpl googleDataSource;
   late MockDio mockDio;
   late SecretDataSourceImpl secretDataSource;
 
@@ -25,11 +25,11 @@ void main() {
     mockFirebaseFirestore = MockFirebaseFirestore();
     mockDio = MockDio();
     secretDataSource = SecretDataSourceImpl();
-    photoDataSource = PhotoDataSourceImpl(
+    googleDataSource = GoogleDataSourceImpl(
         client: mockDio, secretDataSource: secretDataSource);
-    locationDataSource = LocationDataSourceImpl(
+    firebaseDataSource = FirebaseDataSourceImpl(
       firestore: mockFirebaseFirestore,
-      photoDataSource: photoDataSource,
+      googleDataSource: googleDataSource,
     );
   });
 
@@ -37,7 +37,7 @@ void main() {
     test("should catch an exception", () {
       when(() => mockFirebaseFirestore.doc(any())).thenThrow(ServerException);
 
-      final call = locationDataSource.listLocation;
+      final call = firebaseDataSource.listLocation;
 
       expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
     });

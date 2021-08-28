@@ -2,6 +2,8 @@
 include: package:lint/analysis_options.yaml
 
 analyzer:
+  exclude:
+    - "**/*.gr.dart"
   errors:
     missing_required_param: error
     missing_return: error

@@ -1,0 +1,57 @@
+{
+    "predictions": [
+        {
+            "description": "Academia Smart Fit - Cambuí II - Rua Quatorze de Dezembro - Centro, Campinas - SP, Brasil",
+            "matched_substrings": [
+                {
+                    "length": 30,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJmc7J8QfPyJQR0MQQYFS70ng",
+            "reference": "ChIJmc7J8QfPyJQR0MQQYFS70ng",
+            "structured_formatting": {
+                "main_text": "Academia Smart Fit - Cambuí II",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 30,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Rua Quatorze de Dezembro - Centro, Campinas - SP, Brasil"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Academia Smart Fit - Cambuí II"
+                },
+                {
+                    "offset": 33,
+                    "value": "Rua Quatorze de Dezembro"
+                },
+                {
+                    "offset": 60,
+                    "value": "Centro"
+                },
+                {
+                    "offset": 68,
+                    "value": "Campinas"
+                },
+                {
+                    "offset": 79,
+                    "value": "SP"
+                },
+                {
+                    "offset": 83,
+                    "value": "Brasil"
+                }
+            ],
+            "types": [
+                "gym",
+                "health",
+                "point_of_interest",
+                "establishment"
+            ]
+        }
+    ]
+}

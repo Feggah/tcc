@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/domain/usecases/list_location.dart';
+import 'package:exposure/shared/usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -27,7 +28,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     yield* event.map(
       loadHomeScreen: (e) async* {
         yield const LocationState.loading();
-        final failureOrLocations = await listLocation();
+        final failureOrLocations = await listLocation(NoParams());
         yield failureOrLocations.fold(
           (failure) => LocationState.loadFailure(failure),
           (locations) {

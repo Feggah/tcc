@@ -1,6 +1,8 @@
-import 'package:exposure/data/datasources/i_location_datasource.dart';
+import 'package:exposure/data/datasources/i_firebase_datasource.dart';
+import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/domain/entities/location.dart';
 import 'package:dartz/dartz.dart';
+import 'package:exposure/domain/entities/location_search_item.dart';
 import 'package:exposure/domain/repositories/i_location_repository.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/failures.dart';
@@ -9,11 +11,13 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: ILocationRepository)
 class LocationRepositoryImpl implements ILocationRepository {
-  final ILocationDataSource dataSource;
+  final IFirebaseDataSource firebaseDataSource;
+  final IGoogleDataSource googleDataSource;
   final NetworkInfo networkInfo;
 
   LocationRepositoryImpl({
-    required this.dataSource,
+    required this.firebaseDataSource,
+    required this.googleDataSource,
     required this.networkInfo,
   });
 
@@ -21,7 +25,21 @@ class LocationRepositoryImpl implements ILocationRepository {
   Future<Either<Failure, List<Location>>> listLocation() async {
     if (await networkInfo.isConnected) {
       try {
-        return Right(await dataSource.listLocation());
+        return Right(await firebaseDataSource.listLocation());
+      } on ServerException {
+        return const Left(Failure.internalError());
+      }
+    } else {
+      return const Left(Failure.noInternetConnection());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<LocationSearchItem>>> searchLocation(
+      String name) async {
+    if (await networkInfo.isConnected) {
+      try {
+        return Right(await googleDataSource.searchLocation(name));
       } on ServerException {
         return const Left(Failure.internalError());
       }
