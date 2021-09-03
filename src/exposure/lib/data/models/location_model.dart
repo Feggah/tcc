@@ -7,20 +7,16 @@ class LocationModel extends Location {
     required String name,
     required String address,
     required String photoReference,
-    // ignore: avoid_unused_constructor_parameters
     required double latitude,
-    // ignore: avoid_unused_constructor_parameters
     required double longitude,
-    required int arrival,
-    required int departure,
-    required String date,
+    String date = "",
   }) : super(
           name: name,
           address: address,
           photoReference: photoReference,
-          arrival: arrival,
-          departure: departure,
           date: date,
+          longitude: longitude,
+          latitude: latitude,
         );
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
@@ -31,8 +27,6 @@ class LocationModel extends Location {
       photoReference: json["photoReference"] as String,
       latitude: (json["latitude"] as num).toDouble(),
       longitude: (json["longitude"] as num).toDouble(),
-      arrival: arrival,
-      departure: (json["departure"] as num).toInt(),
       date: arrivalDate(arrival),
     );
   }
@@ -40,6 +34,16 @@ class LocationModel extends Location {
   factory LocationModel.fromFirestore(DocumentSnapshot doc) {
     // ignore: cast_nullable_to_non_nullable
     return LocationModel.fromJson(doc.data() as Map<String, dynamic>);
+  }
+
+  factory LocationModel.fromPlaceDetails(Map<String, dynamic> json) {
+    return LocationModel(
+      name: json["name"] as String,
+      address: json["formatted_address"] as String,
+      photoReference: json["photos"][0]["photo_reference"] as String,
+      latitude: (json["geometry"]["location"]["lat"] as num).toDouble(),
+      longitude: (json["geometry"]["location"]["lng"] as num).toDouble(),
+    );
   }
 }
 

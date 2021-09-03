@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/datasources/i_secret_datasource.dart';
+import 'package:exposure/data/models/location_model.dart';
 import 'package:exposure/data/models/location_search_item_model.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:injectable/injectable.dart';
@@ -52,6 +53,25 @@ class GoogleDataSourceImpl implements IGoogleDataSource {
         list.add(model);
       }
       return list;
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<LocationModel> getLocationDetails(String id) async {
+    try {
+      final String key = await secretDataSource.getApiKey();
+      const String fields = "photo,formatted_address,name,geometry";
+      final String path =
+          "$baseUrl/details/json?fields=$fields&key=$key&place_id=$id&language=pt-BR";
+      // ignore: avoid_redundant_argument_values
+      client.options = BaseOptions(responseType: ResponseType.json);
+      final Response response = await client.get(path);
+      final model = LocationModel.fromPlaceDetails(
+          response.data["result"] as Map<String, dynamic>);
+      model.image = await getPhotoImage(model.photoReference);
+      return model;
     } catch (e) {
       throw ServerException();
     }
