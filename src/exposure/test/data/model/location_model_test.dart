@@ -14,11 +14,11 @@ void main() {
     photoReference: "test",
     latitude: 1,
     longitude: 2,
-    arrival: 1628290453000,
-    departure: 1628290753000,
     date: "06 de agosto",
   );
   tLocationModel.image = Uint8List(1);
+  tLocationModel.arrival = 1628290453000;
+  tLocationModel.departure = 1628290753000;
 
   test(
     "LocationModel should be a subclass of Location entity",
@@ -33,6 +33,8 @@ void main() {
 
     final result = LocationModel.fromJson(jsonMap);
     result.image = Uint8List(1);
+    result.arrival = 1628290453000;
+    result.departure = 1628290753000;
 
     expect(result, tLocationModel);
   });

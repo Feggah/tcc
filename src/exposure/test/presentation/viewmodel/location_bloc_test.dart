@@ -17,13 +17,15 @@ void main() {
 
   final tLocation = Location(
     address: "test",
-    arrival: 1,
     date: "31 de dezembro",
-    departure: 2,
     name: "test",
     photoReference: "test",
+    latitude: 0,
+    longitude: 0,
   );
   tLocation.image = Uint8List(1);
+  tLocation.arrival = 1628290453000;
+  tLocation.departure = 1628290753000;
 
   final List<Location> tList = [tLocation];
 

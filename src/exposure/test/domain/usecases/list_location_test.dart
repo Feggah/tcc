@@ -13,11 +13,11 @@ void main() {
   late ListLocation usecase;
   final tLocation = Location(
     address: "test",
-    arrival: 1,
     date: "31 de dezembro",
-    departure: 2,
     name: "test",
     photoReference: "test",
+    latitude: 0,
+    longitude: 0,
   );
 
   final List<Location> tList = [tLocation];

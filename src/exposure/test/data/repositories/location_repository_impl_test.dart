@@ -30,8 +30,6 @@ void main() {
     photoReference: "test",
     latitude: 1,
     longitude: 2,
-    arrival: 3,
-    departure: 4,
     date: "31 de dezembro",
   );
   tLocationModel.image = Uint8List(1);
