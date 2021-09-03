@@ -47,4 +47,17 @@ class LocationRepositoryImpl implements ILocationRepository {
       return const Left(Failure.noInternetConnection());
     }
   }
+
+  @override
+  Future<Either<Failure, Location>> getLocation(String id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        return Right(await googleDataSource.getLocationDetails(id));
+      } on ServerException {
+        return const Left(Failure.internalError());
+      }
+    } else {
+      return const Left(Failure.noInternetConnection());
+    }
+  }
 }

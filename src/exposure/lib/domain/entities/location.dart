@@ -7,8 +7,10 @@ class Location extends Equatable {
   final String address;
   final String photoReference;
   final String date;
-  final int arrival;
-  final int departure;
+  final double latitude;
+  final double longitude;
+  late final int arrival;
+  late final int departure;
   late final Uint8List image;
 
   // ignore: prefer_const_constructors_in_immutables
@@ -16,8 +18,8 @@ class Location extends Equatable {
     required this.name,
     required this.address,
     required this.photoReference,
-    required this.arrival,
-    required this.departure,
+    required this.latitude,
+    required this.longitude,
     required this.date,
   });
 
