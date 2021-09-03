@@ -1,4 +1,5 @@
 import 'package:exposure/injection.dart';
+import 'package:exposure/presentation/view/colors.dart';
 import 'package:exposure/presentation/view/widgets/search_bar.dart';
 import 'package:exposure/presentation/view/widgets/search_list.dart';
 import 'package:exposure/presentation/view/widgets/secondary_text.dart';
@@ -13,6 +14,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: CustomColor.mainText),
         elevation: 0,
         toolbarHeight: MediaQuery.of(context).size.height / 10,
       ),
