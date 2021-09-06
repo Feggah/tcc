@@ -12,6 +12,7 @@ part 'details_check_in_bloc.freezed.dart';
 @injectable
 class DetailsCheckInBloc
     extends Bloc<DetailsCheckInEvent, DetailsCheckInState> {
+  final int utcToBrtDiff = 10800000;
   final String initialDate = "Selecione o dia da visita";
   final String initialTime = "Selecione o horário de entrada e saída";
   DetailsCheckInBloc() : super(DetailsCheckInState.initial());
@@ -73,13 +74,14 @@ class DetailsCheckInBloc
           .map(int.parse)
           .toList();
       response.add(
-        DateTime(
-          checkInDate[2],
-          checkInDate[1],
-          checkInDate[0],
-          hourAndMinutes[0],
-          hourAndMinutes[1],
-        ).millisecondsSinceEpoch,
+        DateTime.utc(
+              checkInDate[2],
+              checkInDate[1],
+              checkInDate[0],
+              hourAndMinutes[0],
+              hourAndMinutes[1],
+            ).millisecondsSinceEpoch +
+            utcToBrtDiff,
       );
     });
     return response;
