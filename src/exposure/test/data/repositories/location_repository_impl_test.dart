@@ -30,8 +30,6 @@ void main() {
     photoReference: "test",
     latitude: 1,
     longitude: 2,
-    arrival: 3,
-    departure: 4,
     date: "31 de dezembro",
   );
   tLocationModel.image = Uint8List(1);
@@ -179,6 +177,90 @@ void main() {
           // act
           final result = await repository.searchLocation("test");
           // assert
+          verifyZeroInteractions(mockGoogleDataSource);
+          verify(() => mockNetworkInfo.isConnected);
+          expect(result, equals(const Left(Failure.noInternetConnection())));
+        },
+      );
+    });
+  });
+
+  group("getLocation", () {
+    final LocationModel expected = LocationModel(
+      name: "name",
+      address: "address",
+      photoReference: "photoReference",
+      latitude: 0,
+      longitude: 0,
+    );
+    expected.image = Uint8List(1);
+    expected.arrival = 0;
+    expected.departure = 0;
+    test("should check if device is online", () async {
+      when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      when(() => mockGoogleDataSource.getLocationDetails(any())).thenAnswer(
+        (_) async => LocationModel(
+          name: "name",
+          address: "address",
+          photoReference: "photoReference",
+          latitude: 0,
+          longitude: 0,
+        ),
+      );
+      when(() => mockGoogleDataSource.getPhotoImage(any()))
+          .thenAnswer((_) async => Uint8List(1));
+
+      await repository.getLocation("test");
+
+      verify(() => mockNetworkInfo.isConnected);
+    });
+
+    runTestsOnline(() {
+      test(
+        "should return LocationModel when the call to data source is successful",
+        () async {
+          when(() => mockGoogleDataSource.getLocationDetails(any())).thenAnswer(
+            (_) async => LocationModel(
+              name: "name",
+              address: "address",
+              photoReference: "photoReference",
+              latitude: 0,
+              longitude: 0,
+            ),
+          );
+          when(() => mockGoogleDataSource.getPhotoImage(any()))
+              .thenAnswer((_) async => Uint8List(1));
+
+          final result = await repository.getLocation("test");
+          result.fold((l) => null, (r) {
+            r.arrival = 0;
+            r.departure = 0;
+          });
+
+          verify(() => mockGoogleDataSource.getLocationDetails("test"));
+          expect(result, equals(Right(expected)));
+        },
+      );
+      test(
+        'should return server failure when the call to data source is unsuccessful',
+        () async {
+          when(() => mockGoogleDataSource.getLocationDetails(any()))
+              .thenThrow(ServerException());
+
+          final result = await repository.getLocation("test");
+
+          verify(() => mockGoogleDataSource.getLocationDetails("test"));
+          expect(result, equals(const Left(Failure.internalError())));
+        },
+      );
+    });
+
+    runTestsOffline(() {
+      test(
+        'should return no internet connection when device is offline',
+        () async {
+          final result = await repository.getLocation("test");
+
           verifyZeroInteractions(mockGoogleDataSource);
           verify(() => mockNetworkInfo.isConnected);
           expect(result, equals(const Left(Failure.noInternetConnection())));

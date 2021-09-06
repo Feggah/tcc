@@ -1,3 +1,5 @@
+import 'package:exposure/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:exposure/domain/entities/location_search_item.dart';
 import 'package:exposure/presentation/view/colors.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,11 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        AutoRouter.of(context).push(
+          DetailsPageRoute(locationId: item.locationId),
+        );
+      },
       title: Text(
         item.title,
         style: const TextStyle(

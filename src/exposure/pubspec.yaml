@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   auto_route: ^2.3.0
   cloud_firestore: ^2.4.0
   cupertino_icons: ^1.0.2
@@ -24,6 +26,7 @@ dependencies:
   injectable: ^1.4.1
   internet_connection_checker: ^0.0.1+2
   intl: ^0.17.0
+  time_range_picker: ^2.0.1
 
 dev_dependencies:
   flutter_test:

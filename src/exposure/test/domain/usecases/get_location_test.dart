@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/domain/repositories/i_location_repository.dart';
-import 'package:exposure/domain/usecases/list_location.dart';
-import 'package:exposure/shared/usecase.dart';
+import 'package:exposure/domain/usecases/get_location.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -10,7 +9,7 @@ class MockLocationRepository extends Mock implements ILocationRepository {}
 
 void main() {
   late MockLocationRepository mockLocationRepository;
-  late ListLocation usecase;
+  late GetLocation usecase;
   final tLocation = Location(
     address: "test",
     date: "31 de dezembro",
@@ -20,24 +19,22 @@ void main() {
     longitude: 0,
   );
 
-  final List<Location> tList = [tLocation];
-
   setUp(() {
     mockLocationRepository = MockLocationRepository();
-    usecase = ListLocation(mockLocationRepository);
+    usecase = GetLocation(mockLocationRepository);
   });
 
   test(
-    'should list Locations from the repository',
+    'should get Location from the repository',
     () async {
       // arrange
-      when(() => mockLocationRepository.listLocation())
-          .thenAnswer((_) async => Right(tList));
+      when(() => mockLocationRepository.getLocation(any()))
+          .thenAnswer((_) async => Right(tLocation));
       // act
-      final result = await usecase(NoParams());
+      final result = await usecase(const Params(id: "teste"));
       // assert
-      expect(result, Right(tList));
-      verify(() => mockLocationRepository.listLocation());
+      expect(result, Right(tLocation));
+      verify(() => mockLocationRepository.getLocation("teste"));
       verifyNoMoreInteractions(mockLocationRepository);
     },
   );
