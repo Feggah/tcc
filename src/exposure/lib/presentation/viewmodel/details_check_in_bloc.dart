@@ -23,7 +23,7 @@ class DetailsCheckInBloc
     yield* event.map(
       timePicked: (e) async* {
         final bool checkInCompleted = state.dateUi != initialDate;
-        final List<int> timestampMap = transformToTimestamp(
+        final List<int> timestampList = transformToTimestamp(
           time: e.time,
           date: state.dateUi,
           transform: checkInCompleted,
@@ -31,13 +31,13 @@ class DetailsCheckInBloc
         yield state.copyWith(
           timeUi: e.time,
           enableSaveButton: checkInCompleted,
-          arrival: timestampMap[0],
-          departure: timestampMap[1],
+          arrival: timestampList[0],
+          departure: timestampList[1],
         );
       },
       datePicked: (e) async* {
         final bool checkInCompleted = state.timeUi != initialTime;
-        final List<int> timestampMap = transformToTimestamp(
+        final List<int> timestampList = transformToTimestamp(
           time: state.timeUi,
           date: e.date,
           transform: checkInCompleted,
@@ -45,8 +45,8 @@ class DetailsCheckInBloc
         yield state.copyWith(
           dateUi: e.date,
           enableSaveButton: checkInCompleted,
-          arrival: timestampMap[0],
-          departure: timestampMap[1],
+          arrival: timestampList[0],
+          departure: timestampList[1],
         );
       },
     );
@@ -58,7 +58,7 @@ class DetailsCheckInBloc
       return [0, 0];
     }
     final List<int> response = [];
-    final List<int> checkInDate = state.dateUi
+    final List<int> checkInDate = date
         .split(
           "/",
         )

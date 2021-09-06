@@ -70,7 +70,6 @@ class GoogleDataSourceImpl implements IGoogleDataSource {
       final Response response = await client.get(path);
       final model = LocationModel.fromPlaceDetails(
           response.data["result"] as Map<String, dynamic>);
-      model.image = await getPhotoImage(model.photoReference);
       return model;
     } catch (e) {
       throw ServerException();

@@ -52,7 +52,10 @@ class LocationRepositoryImpl implements ILocationRepository {
   Future<Either<Failure, Location>> getLocation(String id) async {
     if (await networkInfo.isConnected) {
       try {
-        return Right(await googleDataSource.getLocationDetails(id));
+        final Location model = await googleDataSource.getLocationDetails(id);
+        model.image =
+            await googleDataSource.getPhotoImage(model.photoReference);
+        return Right(model);
       } on ServerException {
         return const Left(Failure.internalError());
       }

@@ -1,0 +1,42 @@
+{
+    "html_attributions": [],
+    "result": {
+        "formatted_address": "2-20 Western Rd, London NW10 7LW, UK",
+        "geometry": {
+            "location": {
+                "lat": 51.5285728,
+                "lng": -0.2696692999999999
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 51.5300445802915,
+                    "lng": -0.2681906197084979
+                },
+                "southwest": {
+                    "lat": 51.5273466197085,
+                    "lng": -0.270888580291502
+                }
+            }
+        },
+        "name": "Asda Park Royal Superstore",
+        "photos": [
+            {
+                "height": 3024,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/112790315261177565765\">HamidReza H</a>"
+                ],
+                "photo_reference": "Aap_uEBG11VLD7rE0XoiSS0F7sEqKyJbROMyPdL0W2WHJsxsnfB-4j6d3kz94RHyQAN3hXV-VexDYhkyLRlec6vS6WnIKqsB4IC6AwcO25SOjL7aeVOaXl_tB9oj-Qpr9yGnPttwLuGV2Ce9W66Gynmss5OHExorBRKE1jQ2M5-vcYrrDfPn",
+                "width": 4032
+            },
+            {
+                "height": 3024,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/103598391310746469773\">Ebbie Azigwe</a>"
+                ],
+                "photo_reference": "Aap_uEAmkMVhpajsm8bi_JwaOFpZyN7gYDM7cdQpRHC9hMHIeE4-oXzGqFgUv0oPJUiGfQTTWe2AYNToA6Qr-pJhazqjNBUa9NstYCh7Isu3Cy3ei-o8p5hfmb2VdIzPgTqfssswNt2KJ1oG4lRYkEby7rWiX05PqbKdDa-rkixMB3PXuWEO",
+                "width": 4032
+            }
+        ]
+    },
+    "status": "OK"
+}
