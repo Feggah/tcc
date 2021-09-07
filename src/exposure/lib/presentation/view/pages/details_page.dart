@@ -31,6 +31,11 @@ class DetailsPage extends StatelessWidget {
           getIt<DetailsBloc>()..add(DetailsEvent.loadDetails(locationId)),
       child: BlocBuilder<DetailsBloc, DetailsState>(
         builder: (context, state) {
+          if (state == const DetailsState.locationSaved()) {
+            WidgetsBinding.instance?.addPostFrameCallback((_) {
+              AutoRouter.of(context).popUntilRoot();
+            });
+          }
           return state.map(
             loading: (state) => const Center(
               child: CircularProgressIndicator(),
@@ -38,10 +43,11 @@ class DetailsPage extends StatelessWidget {
             loaded: (state) => LocationDetails(location: state.location),
             loadFailure: (state) => const SecondaryText(
               title:
-                  "Ocorreu um erro durante o carregamento da pesquisa. Verifique sua conexão com a internet.",
+                  "Um erro ocorreu durante o processamento da requisição. Verifique sua conexão com a internet.",
               size: 17,
               center: true,
             ),
+            locationSaved: (state) => Container(),
           );
         },
       ),

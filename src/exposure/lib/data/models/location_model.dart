@@ -45,6 +45,28 @@ class LocationModel extends Location {
       longitude: (json["geometry"]["location"]["lng"] as num).toDouble(),
     );
   }
+
+  factory LocationModel.fromDomain(Location location) {
+    return LocationModel(
+      name: location.name,
+      address: location.address,
+      photoReference: location.photoReference,
+      latitude: location.latitude,
+      longitude: location.longitude,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      "address": address,
+      "arrival": arrival,
+      "departure": departure,
+      "latitude": latitude,
+      "longitude": longitude,
+      "name": name,
+      "photoReference": photoReference,
+    };
+  }
 }
 
 String arrivalDate(int timestamp) {

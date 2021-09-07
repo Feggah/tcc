@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
-  // 7203FF
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();
   await Firebase.initializeApp();

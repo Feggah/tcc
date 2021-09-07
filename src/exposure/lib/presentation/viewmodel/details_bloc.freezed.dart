@@ -22,6 +22,12 @@ class _$DetailsEventTearOff {
       id,
     );
   }
+
+  _SaveLocation saveLocation(Location location) {
+    return _SaveLocation(
+      location,
+    );
+  }
 }
 
 /// @nodoc
@@ -29,43 +35,43 @@ const $DetailsEvent = _$DetailsEventTearOff();
 
 /// @nodoc
 mixin _$DetailsEvent {
-  String get id => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) loadDetails,
+    required TResult Function(Location location) saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadDetails value) loadDetails,
+    required TResult Function(_SaveLocation value) saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DetailsEventCopyWith<DetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,7 +80,6 @@ abstract class $DetailsEventCopyWith<$Res> {
   factory $DetailsEventCopyWith(
           DetailsEvent value, $Res Function(DetailsEvent) then) =
       _$DetailsEventCopyWithImpl<$Res>;
-  $Res call({String id});
 }
 
 /// @nodoc
@@ -84,27 +89,13 @@ class _$DetailsEventCopyWithImpl<$Res> implements $DetailsEventCopyWith<$Res> {
   final DetailsEvent _value;
   // ignore: unused_field
   final $Res Function(DetailsEvent) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$LoadDetailsCopyWith<$Res>
-    implements $DetailsEventCopyWith<$Res> {
+abstract class _$LoadDetailsCopyWith<$Res> {
   factory _$LoadDetailsCopyWith(
           _LoadDetails value, $Res Function(_LoadDetails) then) =
       __$LoadDetailsCopyWithImpl<$Res>;
-  @override
   $Res call({String id});
 }
 
@@ -165,6 +156,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) loadDetails,
+    required TResult Function(Location location) saveLocation,
   }) {
     return loadDetails(id);
   }
@@ -173,6 +165,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
   }) {
     return loadDetails?.call(id);
   }
@@ -181,6 +174,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
     required TResult orElse(),
   }) {
     if (loadDetails != null) {
@@ -193,6 +187,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadDetails value) loadDetails,
+    required TResult Function(_SaveLocation value) saveLocation,
   }) {
     return loadDetails(this);
   }
@@ -201,6 +196,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
   }) {
     return loadDetails?.call(this);
   }
@@ -209,6 +205,7 @@ class _$_LoadDetails implements _LoadDetails {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
     required TResult orElse(),
   }) {
     if (loadDetails != null) {
@@ -221,11 +218,143 @@ class _$_LoadDetails implements _LoadDetails {
 abstract class _LoadDetails implements DetailsEvent {
   const factory _LoadDetails(String id) = _$_LoadDetails;
 
-  @override
   String get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$LoadDetailsCopyWith<_LoadDetails> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SaveLocationCopyWith<$Res> {
+  factory _$SaveLocationCopyWith(
+          _SaveLocation value, $Res Function(_SaveLocation) then) =
+      __$SaveLocationCopyWithImpl<$Res>;
+  $Res call({Location location});
+}
+
+/// @nodoc
+class __$SaveLocationCopyWithImpl<$Res> extends _$DetailsEventCopyWithImpl<$Res>
+    implements _$SaveLocationCopyWith<$Res> {
+  __$SaveLocationCopyWithImpl(
+      _SaveLocation _value, $Res Function(_SaveLocation) _then)
+      : super(_value, (v) => _then(v as _SaveLocation));
+
+  @override
+  _SaveLocation get _value => super._value as _SaveLocation;
+
+  @override
+  $Res call({
+    Object? location = freezed,
+  }) {
+    return _then(_SaveLocation(
+      location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SaveLocation implements _SaveLocation {
+  const _$_SaveLocation(this.location);
+
+  @override
+  final Location location;
+
+  @override
+  String toString() {
+    return 'DetailsEvent.saveLocation(location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SaveLocation &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(location);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SaveLocationCopyWith<_SaveLocation> get copyWith =>
+      __$SaveLocationCopyWithImpl<_SaveLocation>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) loadDetails,
+    required TResult Function(Location location) saveLocation,
+  }) {
+    return saveLocation(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
+  }) {
+    return saveLocation?.call(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? loadDetails,
+    TResult Function(Location location)? saveLocation,
+    required TResult orElse(),
+  }) {
+    if (saveLocation != null) {
+      return saveLocation(location);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadDetails value) loadDetails,
+    required TResult Function(_SaveLocation value) saveLocation,
+  }) {
+    return saveLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
+  }) {
+    return saveLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadDetails value)? loadDetails,
+    TResult Function(_SaveLocation value)? saveLocation,
+    required TResult orElse(),
+  }) {
+    if (saveLocation != null) {
+      return saveLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveLocation implements DetailsEvent {
+  const factory _SaveLocation(Location location) = _$_SaveLocation;
+
+  Location get location => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$SaveLocationCopyWith<_SaveLocation> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -248,6 +377,10 @@ class _$DetailsStateTearOff {
       failure,
     );
   }
+
+  _LocationSaved locationSaved() {
+    return const _LocationSaved();
+  }
 }
 
 /// @nodoc
@@ -260,6 +393,7 @@ mixin _$DetailsState {
     required TResult Function() loading,
     required TResult Function(Location location) loaded,
     required TResult Function(Failure failure) loadFailure,
+    required TResult Function() locationSaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -267,6 +401,7 @@ mixin _$DetailsState {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -274,6 +409,7 @@ mixin _$DetailsState {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -282,6 +418,7 @@ mixin _$DetailsState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_LocationSaved value) locationSaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -289,6 +426,7 @@ mixin _$DetailsState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -296,6 +434,7 @@ mixin _$DetailsState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -357,6 +496,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function(Location location) loaded,
     required TResult Function(Failure failure) loadFailure,
+    required TResult Function() locationSaved,
   }) {
     return loading();
   }
@@ -367,6 +507,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
   }) {
     return loading?.call();
   }
@@ -377,6 +518,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -391,6 +533,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_LocationSaved value) locationSaved,
   }) {
     return loading(this);
   }
@@ -401,6 +544,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
   }) {
     return loading?.call(this);
   }
@@ -411,6 +555,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -490,6 +635,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() loading,
     required TResult Function(Location location) loaded,
     required TResult Function(Failure failure) loadFailure,
+    required TResult Function() locationSaved,
   }) {
     return loaded(location);
   }
@@ -500,6 +646,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
   }) {
     return loaded?.call(location);
   }
@@ -510,6 +657,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -524,6 +672,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_LocationSaved value) locationSaved,
   }) {
     return loaded(this);
   }
@@ -534,6 +683,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
   }) {
     return loaded?.call(this);
   }
@@ -544,6 +694,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -637,6 +788,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() loading,
     required TResult Function(Location location) loaded,
     required TResult Function(Failure failure) loadFailure,
+    required TResult Function() locationSaved,
   }) {
     return loadFailure(failure);
   }
@@ -647,6 +799,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
   }) {
     return loadFailure?.call(failure);
   }
@@ -657,6 +810,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? loading,
     TResult Function(Location location)? loaded,
     TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -671,6 +825,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_LocationSaved value) locationSaved,
   }) {
     return loadFailure(this);
   }
@@ -681,6 +836,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
   }) {
     return loadFailure?.call(this);
   }
@@ -691,6 +847,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -707,4 +864,120 @@ abstract class _LoadFailure implements DetailsState {
   @JsonKey(ignore: true)
   _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LocationSavedCopyWith<$Res> {
+  factory _$LocationSavedCopyWith(
+          _LocationSaved value, $Res Function(_LocationSaved) then) =
+      __$LocationSavedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LocationSavedCopyWithImpl<$Res>
+    extends _$DetailsStateCopyWithImpl<$Res>
+    implements _$LocationSavedCopyWith<$Res> {
+  __$LocationSavedCopyWithImpl(
+      _LocationSaved _value, $Res Function(_LocationSaved) _then)
+      : super(_value, (v) => _then(v as _LocationSaved));
+
+  @override
+  _LocationSaved get _value => super._value as _LocationSaved;
+}
+
+/// @nodoc
+
+class _$_LocationSaved implements _LocationSaved {
+  const _$_LocationSaved();
+
+  @override
+  String toString() {
+    return 'DetailsState.locationSaved()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _LocationSaved);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(Location location) loaded,
+    required TResult Function(Failure failure) loadFailure,
+    required TResult Function() locationSaved,
+  }) {
+    return locationSaved();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Location location)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
+  }) {
+    return locationSaved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Location location)? loaded,
+    TResult Function(Failure failure)? loadFailure,
+    TResult Function()? locationSaved,
+    required TResult orElse(),
+  }) {
+    if (locationSaved != null) {
+      return locationSaved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadFailure value) loadFailure,
+    required TResult Function(_LocationSaved value) locationSaved,
+  }) {
+    return locationSaved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
+  }) {
+    return locationSaved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadFailure value)? loadFailure,
+    TResult Function(_LocationSaved value)? locationSaved,
+    required TResult orElse(),
+  }) {
+    if (locationSaved != null) {
+      return locationSaved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationSaved implements DetailsState {
+  const factory _LocationSaved() = _$_LocationSaved;
 }

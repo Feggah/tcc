@@ -63,4 +63,17 @@ class LocationRepositoryImpl implements ILocationRepository {
       return const Left(Failure.noInternetConnection());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> saveLocation(Location location) async {
+    if (await networkInfo.isConnected) {
+      try {
+        return Right(await firebaseDataSource.saveLocation(location));
+      } on ServerException {
+        return const Left(Failure.internalError());
+      }
+    } else {
+      return const Left(Failure.noInternetConnection());
+    }
+  }
 }

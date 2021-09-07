@@ -6,6 +6,7 @@ import 'package:exposure/presentation/view/widgets/check_in_time.dart';
 import 'package:exposure/presentation/view/widgets/details_image.dart';
 import 'package:exposure/presentation/view/widgets/main_text.dart';
 import 'package:exposure/presentation/view/widgets/secondary_text.dart';
+import 'package:exposure/presentation/viewmodel/details_bloc.dart';
 import 'package:exposure/presentation/viewmodel/details_check_in_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,6 +59,9 @@ class LocationDetails extends StatelessWidget {
                             ? () {
                                 location.arrival = state.arrival;
                                 location.departure = state.departure;
+                                BlocProvider.of<DetailsBloc>(context).add(
+                                  DetailsEvent.saveLocation(location),
+                                );
                               }
                             : null,
                         child: Container(

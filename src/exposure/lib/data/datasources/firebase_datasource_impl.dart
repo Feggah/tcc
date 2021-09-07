@@ -1,7 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:exposure/data/datasources/i_firebase_datasource.dart';
 import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/models/location_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/firestore_helpers.dart';
 import 'package:injectable/injectable.dart';
@@ -33,6 +35,21 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
       }
       return list;
     } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Unit> saveLocation(Location location) async {
+    try {
+      final userDoc = await firestore.userDocument();
+      final locModel = LocationModel.fromDomain(location);
+      locModel.arrival = location.arrival;
+      locModel.departure = location.departure;
+
+      await userDoc.locationCollection.add(locModel.toJson());
+      return unit;
+    } on FirebaseException {
       throw ServerException();
     }
   }
