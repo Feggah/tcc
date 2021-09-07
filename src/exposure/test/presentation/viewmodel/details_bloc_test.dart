@@ -33,6 +33,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(const get_location.Params(id: "dummy"));
+    registerFallbackValue(save_location.Params(location: tLocation));
   });
 
   setUp(() {
@@ -72,6 +73,36 @@ void main() {
 
         expectLater(bloc.stream, emitsInOrder(expected));
         bloc.add(const DetailsEvent.loadDetails("test"));
+      },
+    );
+  });
+
+  group("saveLocation", () {
+    test("should emit [loading, loadFailure] when an error occur", () async {
+      when(() => mockSaveLocationUseCase(any())).thenAnswer(
+        (_) async => const Left(Failure.internalError()),
+      );
+      const expected = [
+        DetailsState.loading(),
+        DetailsState.loadFailure(Failure.internalError()),
+      ];
+      expectLater(bloc.stream, emitsInOrder(expected));
+      bloc.add(DetailsEvent.saveLocation(tLocation));
+    });
+
+    test(
+      'should emit [loading, locationSaved] when location is saved successfully',
+      () async {
+        when(() => mockSaveLocationUseCase(any())).thenAnswer(
+          (_) async => const Right(unit),
+        );
+        const expected = [
+          DetailsState.loading(),
+          DetailsState.locationSaved(),
+        ];
+
+        expectLater(bloc.stream, emitsInOrder(expected));
+        bloc.add(DetailsEvent.saveLocation(tLocation));
       },
     );
   });

@@ -62,4 +62,48 @@ void main() {
 
     expect(result, expected);
   });
+
+  test("toJson should return a valid map", () async {
+    final Map<String, dynamic> jsonMap =
+        json.decode(fixture("location.json")) as Map<String, dynamic>;
+    final locModel = LocationModel.fromJson(jsonMap);
+    locModel.image = Uint8List(1);
+    locModel.arrival = 1628290453000;
+    locModel.departure = 1628290753000;
+
+    final result = locModel.toJson();
+
+    expect(result, jsonMap);
+  });
+
+  test("fromDomain should return a valid LocationModel", () async {
+    final Location location = Location(
+      name: "name",
+      address: "address",
+      photoReference: "photoReference",
+      latitude: 0,
+      longitude: 0,
+      date: "",
+    );
+    location.image = Uint8List(1);
+    location.arrival = 0;
+    location.departure = 0;
+    final LocationModel expected = LocationModel(
+      name: "name",
+      address: "address",
+      photoReference: "photoReference",
+      latitude: 0,
+      longitude: 0,
+    );
+    expected.image = Uint8List(1);
+    expected.arrival = 0;
+    expected.departure = 0;
+
+    final result = LocationModel.fromDomain(location);
+    result.image = Uint8List(1);
+    result.arrival = 0;
+    result.departure = 0;
+
+    expect(result, expected);
+  });
 }

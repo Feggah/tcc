@@ -89,4 +89,52 @@ void main() {
       },
     );
   });
+
+  group("refresh", () {
+    test("should emit [loading, loadFailure] when an error occur", () async {
+      when(() => mockListLocationUseCase(any())).thenAnswer(
+        (_) async => const Left(Failure.internalError()),
+      );
+      const expected = [
+        LocationState.loading(),
+        LocationState.loadFailure(Failure.internalError()),
+      ];
+      expectLater(bloc.stream, emitsInOrder(expected));
+      bloc.add(const LocationEvent.refresh());
+    });
+
+    test(
+      'should emit [Loading, Loaded] when data is gotten successfully and it is greater than zero',
+      () async {
+        when(() => mockListLocationUseCase(any())).thenAnswer(
+          (_) async => Right(tList),
+        );
+        final expected = [
+          const LocationState.loading(),
+          LocationState.loaded(tList)
+        ];
+
+        expectLater(bloc.stream, emitsInOrder(expected));
+
+        bloc.add(const LocationEvent.refresh());
+      },
+    );
+
+    test(
+      'should emit [Loading, Empty] when data is gotten successfully and it is equal to zero',
+      () async {
+        when(() => mockListLocationUseCase(any())).thenAnswer(
+          (_) async => const Right([]),
+        );
+        final expected = [
+          const LocationState.loading(),
+          const LocationState.empty(),
+        ];
+
+        expectLater(bloc.stream, emitsInOrder(expected));
+
+        bloc.add(const LocationEvent.refresh());
+      },
+    );
+  });
 }

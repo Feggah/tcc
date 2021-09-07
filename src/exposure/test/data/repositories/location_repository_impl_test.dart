@@ -6,6 +6,7 @@ import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/models/location_model.dart';
 import 'package:exposure/data/models/location_search_item_model.dart';
 import 'package:exposure/data/repositories/location_repository_impl.dart';
+import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/failures.dart';
 import 'package:exposure/shared/network_info.dart';
@@ -53,6 +54,20 @@ void main() {
       networkInfo: mockNetworkInfo,
       googleDataSource: mockGoogleDataSource,
     );
+  });
+
+  setUpAll(() {
+    final Location location = LocationModel(
+      name: "name",
+      address: "address",
+      photoReference: "photoReference",
+      latitude: 0,
+      longitude: 0,
+    );
+    location.image = Uint8List(1);
+    location.arrival = 0;
+    location.departure = 0;
+    registerFallbackValue(location);
   });
 
   void runTestsOnline(Function body) {
@@ -262,6 +277,68 @@ void main() {
           final result = await repository.getLocation("test");
 
           verifyZeroInteractions(mockGoogleDataSource);
+          verify(() => mockNetworkInfo.isConnected);
+          expect(result, equals(const Left(Failure.noInternetConnection())));
+        },
+      );
+    });
+  });
+
+  group("saveLocation", () {
+    final Location location = LocationModel(
+      name: "name",
+      address: "address",
+      photoReference: "photoReference",
+      latitude: 0,
+      longitude: 0,
+    );
+    location.image = Uint8List(1);
+    location.arrival = 0;
+    location.departure = 0;
+    test("should check if device is online", () async {
+      when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      when(() => mockFirebaseDataSource.saveLocation(any()))
+          .thenAnswer((_) async => unit);
+
+      await repository.saveLocation(location);
+
+      verify(() => mockNetworkInfo.isConnected);
+    });
+
+    runTestsOnline(() {
+      test(
+        "should return unit when the call to data source is successful",
+        () async {
+          when(() => mockFirebaseDataSource.saveLocation(any()))
+              .thenAnswer((_) async => unit);
+
+          final result = await repository.saveLocation(location);
+
+          verify(() => mockFirebaseDataSource.saveLocation(location));
+          expect(result, equals(const Right(unit)));
+        },
+      );
+      test(
+        'should return server failure when the call to data source is unsuccessful',
+        () async {
+          when(() => mockFirebaseDataSource.saveLocation(any()))
+              .thenThrow(ServerException());
+
+          final result = await repository.saveLocation(location);
+
+          verify(() => mockFirebaseDataSource.saveLocation(location));
+          expect(result, equals(const Left(Failure.internalError())));
+        },
+      );
+    });
+
+    runTestsOffline(() {
+      test(
+        'should return no internet connection when device is offline',
+        () async {
+          final result = await repository.saveLocation(location);
+
+          verifyZeroInteractions(mockFirebaseDataSource);
           verify(() => mockNetworkInfo.isConnected);
           expect(result, equals(const Left(Failure.noInternetConnection())));
         },
