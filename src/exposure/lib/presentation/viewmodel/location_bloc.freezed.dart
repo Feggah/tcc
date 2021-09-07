@@ -20,6 +20,10 @@ class _$LocationEventTearOff {
   _LoadHomeScreen loadHomeScreen() {
     return const _LoadHomeScreen();
   }
+
+  _Refresh refresh() {
+    return const _Refresh();
+  }
 }
 
 /// @nodoc
@@ -30,32 +34,38 @@ mixin _$LocationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHomeScreen,
+    required TResult Function() refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadHomeScreen value) loadHomeScreen,
+    required TResult Function(_Refresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +129,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadHomeScreen,
+    required TResult Function() refresh,
   }) {
     return loadHomeScreen();
   }
@@ -127,6 +138,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
   }) {
     return loadHomeScreen?.call();
   }
@@ -135,6 +147,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
     required TResult orElse(),
   }) {
     if (loadHomeScreen != null) {
@@ -147,6 +160,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadHomeScreen value) loadHomeScreen,
+    required TResult Function(_Refresh value) refresh,
   }) {
     return loadHomeScreen(this);
   }
@@ -155,6 +169,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
   }) {
     return loadHomeScreen?.call(this);
   }
@@ -163,6 +178,7 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (loadHomeScreen != null) {
@@ -174,6 +190,107 @@ class _$_LoadHomeScreen implements _LoadHomeScreen {
 
 abstract class _LoadHomeScreen implements LocationEvent {
   const factory _LoadHomeScreen() = _$_LoadHomeScreen;
+}
+
+/// @nodoc
+abstract class _$RefreshCopyWith<$Res> {
+  factory _$RefreshCopyWith(_Refresh value, $Res Function(_Refresh) then) =
+      __$RefreshCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RefreshCopyWithImpl<$Res> extends _$LocationEventCopyWithImpl<$Res>
+    implements _$RefreshCopyWith<$Res> {
+  __$RefreshCopyWithImpl(_Refresh _value, $Res Function(_Refresh) _then)
+      : super(_value, (v) => _then(v as _Refresh));
+
+  @override
+  _Refresh get _value => super._value as _Refresh;
+}
+
+/// @nodoc
+
+class _$_Refresh implements _Refresh {
+  const _$_Refresh();
+
+  @override
+  String toString() {
+    return 'LocationEvent.refresh()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Refresh);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadHomeScreen,
+    required TResult Function() refresh,
+  }) {
+    return refresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
+  }) {
+    return refresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadHomeScreen,
+    TResult Function()? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadHomeScreen value) loadHomeScreen,
+    required TResult Function(_Refresh value) refresh,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadHomeScreen value)? loadHomeScreen,
+    TResult Function(_Refresh value)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Refresh implements LocationEvent {
+  const factory _Refresh() = _$_Refresh;
 }
 
 /// @nodoc

@@ -27,17 +27,24 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   ) async* {
     yield* event.map(
       loadHomeScreen: (e) async* {
-        yield const LocationState.loading();
-        final failureOrLocations = await listLocation(NoParams());
-        yield failureOrLocations.fold(
-          (failure) => LocationState.loadFailure(failure),
-          (locations) {
-            if (locations.isNotEmpty) {
-              return LocationState.loaded(locations);
-            }
-            return const LocationState.empty();
-          },
-        );
+        yield* handleLoadAndRefresh();
+      },
+      refresh: (e) async* {
+        yield* handleLoadAndRefresh();
+      },
+    );
+  }
+
+  Stream<LocationState> handleLoadAndRefresh() async* {
+    yield const LocationState.loading();
+    final failureOrLocations = await listLocation(NoParams());
+    yield failureOrLocations.fold(
+      (failure) => LocationState.loadFailure(failure),
+      (locations) {
+        if (locations.isNotEmpty) {
+          return LocationState.loaded(locations);
+        }
+        return const LocationState.empty();
       },
     );
   }
