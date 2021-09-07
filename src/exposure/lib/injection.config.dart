@@ -19,14 +19,15 @@ import 'data/datasources/i_secret_datasource.dart' as _i6;
 import 'data/datasources/secret_datasource_impl.dart' as _i7;
 import 'data/repositories/location_repository_impl.dart' as _i15;
 import 'domain/repositories/i_location_repository.dart' as _i14;
-import 'domain/usecases/get_location.dart' as _i19;
+import 'domain/usecases/get_location.dart' as _i20;
 import 'domain/usecases/list_location.dart' as _i16;
-import 'domain/usecases/search_location.dart' as _i18;
-import 'injection.dart' as _i22;
-import 'presentation/viewmodel/details_bloc.dart' as _i21;
+import 'domain/usecases/save_location.dart' as _i18;
+import 'domain/usecases/search_location.dart' as _i19;
+import 'injection.dart' as _i23;
+import 'presentation/viewmodel/details_bloc.dart' as _i22;
 import 'presentation/viewmodel/details_check_in_bloc.dart' as _i3;
 import 'presentation/viewmodel/location_bloc.dart' as _i17;
-import 'presentation/viewmodel/search_bloc.dart' as _i20;
+import 'presentation/viewmodel/search_bloc.dart' as _i21;
 import 'shared/network_info.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -57,15 +58,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i16.ListLocation(get<_i14.ILocationRepository>()));
   gh.factory<_i17.LocationBloc>(
       () => _i17.LocationBloc(listLocation: get<_i16.ListLocation>()));
-  gh.lazySingleton<_i18.SearchLocation>(
-      () => _i18.SearchLocation(get<_i14.ILocationRepository>()));
-  gh.lazySingleton<_i19.GetLocation>(
-      () => _i19.GetLocation(get<_i14.ILocationRepository>()));
-  gh.factory<_i20.SearchBloc>(
-      () => _i20.SearchBloc(searchLocation: get<_i18.SearchLocation>()));
-  gh.factory<_i21.DetailsBloc>(
-      () => _i21.DetailsBloc(getLocation: get<_i19.GetLocation>()));
+  gh.lazySingleton<_i18.SaveLocation>(
+      () => _i18.SaveLocation(get<_i14.ILocationRepository>()));
+  gh.lazySingleton<_i19.SearchLocation>(
+      () => _i19.SearchLocation(get<_i14.ILocationRepository>()));
+  gh.lazySingleton<_i20.GetLocation>(
+      () => _i20.GetLocation(get<_i14.ILocationRepository>()));
+  gh.factory<_i21.SearchBloc>(
+      () => _i21.SearchBloc(searchLocation: get<_i19.SearchLocation>()));
+  gh.factory<_i22.DetailsBloc>(() => _i22.DetailsBloc(
+      getLocation: get<_i20.GetLocation>(),
+      saveLocation: get<_i18.SaveLocation>()));
   return get;
 }
 
-class _$RegisterThirdParties extends _i22.RegisterThirdParties {}
+class _$RegisterThirdParties extends _i23.RegisterThirdParties {}

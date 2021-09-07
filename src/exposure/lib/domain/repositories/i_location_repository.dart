@@ -7,4 +7,5 @@ abstract class ILocationRepository {
   Future<Either<Failure, List<Location>>> listLocation();
   Future<Either<Failure, List<LocationSearchItem>>> searchLocation(String name);
   Future<Either<Failure, Location>> getLocation(String id);
+  Future<Either<Failure, Unit>> saveLocation(Location location);
 }

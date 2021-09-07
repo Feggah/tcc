@@ -20,6 +20,7 @@ class LocationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: 6,

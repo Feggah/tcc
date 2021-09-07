@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:exposure/data/datasources/firebase_datasource_impl.dart';
 import 'package:exposure/data/datasources/google_datasource_impl.dart';
 import 'package:exposure/data/datasources/secret_datasource_impl.dart';
+import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -20,6 +21,15 @@ void main() {
   late GoogleDataSourceImpl googleDataSource;
   late MockDio mockDio;
   late SecretDataSourceImpl secretDataSource;
+
+  final Location location = Location(
+    name: "name",
+    address: "address",
+    photoReference: "photoReference",
+    latitude: 0,
+    longitude: 0,
+    date: "date",
+  );
 
   setUp(() {
     mockFirebaseFirestore = MockFirebaseFirestore();
@@ -40,6 +50,19 @@ void main() {
       final call = firebaseDataSource.listLocation;
 
       expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
+    });
+  });
+
+  group("saveLocation", () {
+    test("should catch an exception", () {
+      when(() => mockFirebaseFirestore.doc(any())).thenThrow(ServerException);
+
+      final call = firebaseDataSource.saveLocation;
+
+      expect(
+        () => call(location),
+        throwsA(const TypeMatcher<ServerException>()),
+      );
     });
   });
 }
