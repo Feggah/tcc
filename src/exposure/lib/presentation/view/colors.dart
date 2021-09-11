@@ -13,4 +13,5 @@ class CustomColor extends Color {
   static const CustomColor mainText = CustomColor._(0xFF2D0C57);
   static const CustomColor secondaryText = CustomColor._(0xFF9586A8);
   static const CustomColor cardBorder = CustomColor._(0xFFD9D0E3);
+  static const CustomColor initialBackground = CustomColor._(0xFFA259FF);
 }

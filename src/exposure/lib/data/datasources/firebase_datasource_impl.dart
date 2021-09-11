@@ -4,18 +4,22 @@ import 'package:exposure/data/datasources/i_google_datasource.dart';
 import 'package:exposure/data/models/location_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exposure/domain/entities/location.dart';
+import 'package:exposure/domain/entities/user.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/firestore_helpers.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IFirebaseDataSource)
 class FirebaseDataSourceImpl implements IFirebaseDataSource {
   final FirebaseFirestore firestore;
   final IGoogleDataSource googleDataSource;
+  final FirebaseAuth firebaseAuth;
 
   FirebaseDataSourceImpl({
     required this.firestore,
     required this.googleDataSource,
+    required this.firebaseAuth,
   });
 
   @override
@@ -50,6 +54,24 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
       await userDoc.locationCollection.add(locModel.toJson());
       return unit;
     } on FirebaseException {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Option<User>> getSignedInUser() async {
+    if (firebaseAuth.currentUser == null) {
+      throw AuthException();
+    }
+    return optionOf(User(id: firebaseAuth.currentUser!.uid));
+  }
+
+  @override
+  Future<Unit> signInAnonymously() async {
+    try {
+      await firebaseAuth.signInAnonymously();
+      return unit;
+    } catch (e) {
       throw ServerException();
     }
   }
