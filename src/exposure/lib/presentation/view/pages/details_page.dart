@@ -41,11 +41,15 @@ class DetailsPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
             loaded: (state) => LocationDetails(location: state.location),
-            loadFailure: (state) => const SecondaryText(
-              title:
-                  "Um erro ocorreu durante o processamento da requisição. Verifique sua conexão com a internet.",
-              size: 17,
-              center: true,
+            loadFailure: (state) => Container(
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height,
+              child: const SecondaryText(
+                title:
+                    "Um erro ocorreu durante o processamento da requisição. Verifique sua conexão com a internet.",
+                size: 17,
+                center: true,
+              ),
             ),
             locationSaved: (state) => Container(),
           );
