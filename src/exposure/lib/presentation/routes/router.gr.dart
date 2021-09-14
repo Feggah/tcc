@@ -8,10 +8,11 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../view/home.dart' as _i5;
+import '../view/pages/confirmed_page.dart' as _i8;
 import '../view/pages/details_page.dart' as _i7;
-import '../view/pages/infected_page.dart' as _i9;
+import '../view/pages/infected_page.dart' as _i10;
 import '../view/pages/initial_page.dart' as _i4;
-import '../view/pages/locations_page.dart' as _i8;
+import '../view/pages/locations_page.dart' as _i9;
 import '../view/pages/search_page.dart' as _i6;
 import '../view/pages/splash_page.dart' as _i3;
 
@@ -60,17 +61,24 @@ class AppRouter extends _i1.RootStackRouter {
         },
         opaque: true,
         barrierDismissible: false),
+    ConfirmedPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i8.ConfirmedPage();
+        },
+        opaque: true,
+        barrierDismissible: false),
     LocationsPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i8.LocationsPage();
+          return _i9.LocationsPage();
         },
         opaque: true,
         barrierDismissible: false),
     InfectedPageRoute.name: (routeData) => _i1.CustomPage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.InfectedPage();
+          return _i10.InfectedPage();
         },
         opaque: true,
         barrierDismissible: false)
@@ -85,7 +93,8 @@ class AppRouter extends _i1.RootStackRouter {
           _i1.RouteConfig(InfectedPageRoute.name, path: 'infected-page')
         ]),
         _i1.RouteConfig(SearchPageRoute.name, path: '/search-page'),
-        _i1.RouteConfig(DetailsPageRoute.name, path: '/details-page')
+        _i1.RouteConfig(DetailsPageRoute.name, path: '/details-page'),
+        _i1.RouteConfig(ConfirmedPageRoute.name, path: '/confirmed-page')
       ];
 }
 
@@ -127,6 +136,12 @@ class DetailsPageRouteArgs {
   const DetailsPageRouteArgs({required this.locationId});
 
   final String locationId;
+}
+
+class ConfirmedPageRoute extends _i1.PageRouteInfo {
+  const ConfirmedPageRoute() : super(name, path: '/confirmed-page');
+
+  static const String name = 'ConfirmedPageRoute';
 }
 
 class LocationsPageRoute extends _i1.PageRouteInfo {
