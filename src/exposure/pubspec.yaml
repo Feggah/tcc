@@ -49,9 +49,11 @@ flutter:
   uses-material-design: true
   assets:
     - secret.json
-    - images/server_error.svg
-    - images/location_not_found.svg
+    - assets/images/server_error.svg
+    - assets/images/location_not_found.svg
     - assets/icon/app-icon.png
+    - assets/images/doctor.svg
+    - assets/images/sent.svg
 
 dependency_overrides:
   meta: ^1.7.0
