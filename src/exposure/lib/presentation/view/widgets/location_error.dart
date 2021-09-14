@@ -27,7 +27,7 @@ class LocationError extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               child: SvgPicture.asset(
-                "images/server_error.svg",
+                "assets/images/server_error.svg",
                 width: MediaQuery.of(context).size.width / 1.37,
               ),
             ),

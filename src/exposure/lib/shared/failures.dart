@@ -6,4 +6,5 @@ part "failures.freezed.dart";
 class Failure with _$Failure {
   const factory Failure.internalError() = InternalError;
   const factory Failure.noInternetConnection() = NoInternetConnection;
+  const factory Failure.alreadySaved() = AlreadySaved;
 }

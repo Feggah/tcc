@@ -9,6 +9,10 @@ extension FirestoreX on FirebaseFirestore {
     final user = userOption.getOrElse(() => throw AuthException());
     return FirebaseFirestore.instance.collection("users").doc(user.id);
   }
+
+  CollectionReference infectedCollection() {
+    return FirebaseFirestore.instance.collection("infected");
+  }
 }
 
 extension DocumentReferenceX on DocumentReference {

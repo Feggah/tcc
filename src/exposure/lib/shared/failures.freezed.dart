@@ -24,6 +24,10 @@ class _$FailureTearOff {
   NoInternetConnection noInternetConnection() {
     return const NoInternetConnection();
   }
+
+  AlreadySaved alreadySaved() {
+    return const AlreadySaved();
+  }
 }
 
 /// @nodoc
@@ -35,18 +39,21 @@ mixin _$Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() internalError,
     required TResult Function() noInternetConnection,
+    required TResult Function() alreadySaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,18 +61,21 @@ mixin _$Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(InternalError value) internalError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(AlreadySaved value) alreadySaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,6 +137,7 @@ class _$InternalError implements InternalError {
   TResult when<TResult extends Object?>({
     required TResult Function() internalError,
     required TResult Function() noInternetConnection,
+    required TResult Function() alreadySaved,
   }) {
     return internalError();
   }
@@ -136,6 +147,7 @@ class _$InternalError implements InternalError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
   }) {
     return internalError?.call();
   }
@@ -145,6 +157,7 @@ class _$InternalError implements InternalError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
     required TResult orElse(),
   }) {
     if (internalError != null) {
@@ -158,6 +171,7 @@ class _$InternalError implements InternalError {
   TResult map<TResult extends Object?>({
     required TResult Function(InternalError value) internalError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(AlreadySaved value) alreadySaved,
   }) {
     return internalError(this);
   }
@@ -167,6 +181,7 @@ class _$InternalError implements InternalError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
   }) {
     return internalError?.call(this);
   }
@@ -176,6 +191,7 @@ class _$InternalError implements InternalError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
     required TResult orElse(),
   }) {
     if (internalError != null) {
@@ -231,6 +247,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult when<TResult extends Object?>({
     required TResult Function() internalError,
     required TResult Function() noInternetConnection,
+    required TResult Function() alreadySaved,
   }) {
     return noInternetConnection();
   }
@@ -240,6 +257,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
   }) {
     return noInternetConnection?.call();
   }
@@ -249,6 +267,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? internalError,
     TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -262,6 +281,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult map<TResult extends Object?>({
     required TResult Function(InternalError value) internalError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(AlreadySaved value) alreadySaved,
   }) {
     return noInternetConnection(this);
   }
@@ -271,6 +291,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -280,6 +301,7 @@ class _$NoInternetConnection implements NoInternetConnection {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InternalError value)? internalError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -291,4 +313,113 @@ class _$NoInternetConnection implements NoInternetConnection {
 
 abstract class NoInternetConnection implements Failure {
   const factory NoInternetConnection() = _$NoInternetConnection;
+}
+
+/// @nodoc
+abstract class $AlreadySavedCopyWith<$Res> {
+  factory $AlreadySavedCopyWith(
+          AlreadySaved value, $Res Function(AlreadySaved) then) =
+      _$AlreadySavedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AlreadySavedCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements $AlreadySavedCopyWith<$Res> {
+  _$AlreadySavedCopyWithImpl(
+      AlreadySaved _value, $Res Function(AlreadySaved) _then)
+      : super(_value, (v) => _then(v as AlreadySaved));
+
+  @override
+  AlreadySaved get _value => super._value as AlreadySaved;
+}
+
+/// @nodoc
+
+class _$AlreadySaved implements AlreadySaved {
+  const _$AlreadySaved();
+
+  @override
+  String toString() {
+    return 'Failure.alreadySaved()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AlreadySaved);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() internalError,
+    required TResult Function() noInternetConnection,
+    required TResult Function() alreadySaved,
+  }) {
+    return alreadySaved();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? internalError,
+    TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
+  }) {
+    return alreadySaved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? internalError,
+    TResult Function()? noInternetConnection,
+    TResult Function()? alreadySaved,
+    required TResult orElse(),
+  }) {
+    if (alreadySaved != null) {
+      return alreadySaved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InternalError value) internalError,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(AlreadySaved value) alreadySaved,
+  }) {
+    return alreadySaved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InternalError value)? internalError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
+  }) {
+    return alreadySaved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InternalError value)? internalError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(AlreadySaved value)? alreadySaved,
+    required TResult orElse(),
+  }) {
+    if (alreadySaved != null) {
+      return alreadySaved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AlreadySaved implements Failure {
+  const factory AlreadySaved() = _$AlreadySaved;
 }

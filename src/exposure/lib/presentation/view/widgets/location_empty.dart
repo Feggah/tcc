@@ -27,7 +27,7 @@ class LocationEmpty extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               child: SvgPicture.asset(
-                "images/location_not_found.svg",
+                "assets/images/location_not_found.svg",
                 width: MediaQuery.of(context).size.width / 1.5,
               ),
             ),

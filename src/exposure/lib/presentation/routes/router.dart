@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:exposure/presentation/view/home.dart';
+import 'package:exposure/presentation/view/pages/confirmed_page.dart';
 import 'package:exposure/presentation/view/pages/details_page.dart';
 import 'package:exposure/presentation/view/pages/infected_page.dart';
 import 'package:exposure/presentation/view/pages/initial_page.dart';
@@ -23,6 +24,7 @@ import 'package:exposure/presentation/view/pages/splash_page.dart';
     ),
     CustomRoute(page: SearchPage),
     CustomRoute(page: DetailsPage),
+    CustomRoute(page: ConfirmedPage),
   ],
 )
 class $AppRouter {}

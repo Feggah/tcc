@@ -8,4 +8,5 @@ abstract class IFirebaseDataSource {
   Future<Unit> saveLocation(Location location);
   Future<Option<User>> getSignedInUser();
   Future<Unit> signInAnonymously();
+  Future<Unit> saveInfected();
 }

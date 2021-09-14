@@ -75,4 +75,57 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
       throw ServerException();
     }
   }
+
+  @override
+  Future<Unit> saveInfected() async {
+    try {
+      final userDoc = await firestore.userDocument();
+
+      if (await hasSavedRecently(userDoc)) {
+        throw AlreadySavedException();
+      }
+
+      await userDoc.set({"lastSaved": DateTime.now().millisecondsSinceEpoch},
+          SetOptions(merge: true));
+
+      final snapshot = await userDoc.locationCollection.get();
+      for (final document in snapshot.docs) {
+        final Map<String, dynamic> docData =
+            // ignore: cast_nullable_to_non_nullable
+            document.data() as Map<String, dynamic>;
+
+        final infectedCollection = firestore.infectedCollection();
+        infectedCollection.add({
+          "arrival": docData["arrival"],
+          "departure": docData["departure"],
+          "latitude": docData["latitude"],
+          "longitude": docData["longitude"],
+        });
+      }
+      return unit;
+    } on AlreadySavedException {
+      throw AlreadySavedException();
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  Future<bool> hasSavedRecently(DocumentReference<Object?> docRef) async {
+    final value = await docRef.get();
+
+    final dict = value.data() as Map<String, dynamic>?;
+    if (dict == null || !dict.containsKey("lastSaved")) {
+      return false;
+    }
+
+    final lastSaved = (dict["lastSaved"] as num).toInt();
+    final threshold = DateTime.now()
+        .subtract(const Duration(days: 14))
+        .millisecondsSinceEpoch;
+    if (lastSaved > threshold) {
+      return true;
+    }
+
+    return false;
+  }
 }
