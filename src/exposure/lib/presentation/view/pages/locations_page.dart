@@ -4,7 +4,10 @@ import 'package:exposure/presentation/view/widgets/location_empty.dart';
 import 'package:exposure/presentation/view/widgets/location_error.dart';
 import 'package:exposure/presentation/view/widgets/location_list.dart';
 import 'package:exposure/presentation/view/widgets/main_text.dart';
+import 'package:exposure/presentation/view/widgets/notification.dart';
 import 'package:exposure/presentation/viewmodel/location_bloc.dart';
+import 'package:exposure/presentation/viewmodel/notification_bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,15 +23,56 @@ class LocationsPage extends StatelessWidget {
     );
   }
 
-  BlocProvider<LocationBloc> buildBody(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<LocationBloc>()..add(const LocationEvent.loadHomeScreen()),
+  MultiBlocProvider buildBody(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LocationBloc>(
+          create: (context) => getIt<LocationBloc>()
+            ..add(
+              const LocationEvent.loadHomeScreen(),
+            ),
+        ),
+        BlocProvider<NotificationBloc>(
+          create: (context) => getIt<NotificationBloc>()
+            ..add(
+              const NotificationEvent.watchNotifications(),
+            ),
+        )
+      ],
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            BlocListener<NotificationBloc, NotificationState>(
+              listener: (context, state) {
+                state.map(
+                  initial: (_) {},
+                  completed: (_) {},
+                  failed: (_) {},
+                  sent: (_) {
+                    BlocProvider.of<NotificationBloc>(context)
+                        .add(const NotificationEvent.saveLastSentTime());
+                  },
+                  watch: (_) {
+                    FirebaseMessaging.onMessage.listen(
+                      (RemoteMessage message) {
+                        BlocProvider.of<NotificationBloc>(context).add(
+                            NotificationEvent.display(message.notification));
+                      },
+                    );
+                  },
+                  received: (state) async {
+                    appNotification(
+                      title: state.notification.title,
+                      body: state.notification.body,
+                      error: false,
+                    );
+                  },
+                );
+              },
+              child: Container(),
+            ),
             const MainText(
               title: "Locais",
               size: 34,
@@ -51,7 +95,7 @@ class LocationsPage extends StatelessWidget {
                   empty: (state) => LocationEmpty(),
                 );
               },
-            )
+            ),
           ],
         ),
       ),
