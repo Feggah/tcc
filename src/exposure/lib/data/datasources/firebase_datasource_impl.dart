@@ -5,9 +5,11 @@ import 'package:exposure/data/models/location_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/domain/entities/user.dart';
+import 'package:exposure/notification.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:exposure/shared/firestore_helpers.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IFirebaseDataSource)
@@ -15,11 +17,13 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
   final FirebaseFirestore firestore;
   final IGoogleDataSource googleDataSource;
   final FirebaseAuth firebaseAuth;
+  final FirebaseMessaging firebaseMessaging;
 
   FirebaseDataSourceImpl({
     required this.firestore,
     required this.googleDataSource,
     required this.firebaseAuth,
+    required this.firebaseMessaging,
   });
 
   @override
@@ -122,10 +126,69 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
     final threshold = DateTime.now()
         .subtract(const Duration(days: 14))
         .millisecondsSinceEpoch;
-    if (lastSaved > threshold) {
-      return true;
-    }
+    return lastSaved > threshold;
+    // if (lastSaved > threshold) {
+    //   return true;
+    // }
 
-    return false;
+    // return false;
+  }
+
+  @override
+  Future<Unit> requestPermission() async {
+    await firebaseMessaging.requestPermission();
+    return unit;
+    // return settings.authorizationStatus.toString();
+  }
+
+  @override
+  Future<String> getPermission() async {
+    final settings = await firebaseMessaging.getNotificationSettings();
+    return settings.authorizationStatus.toString();
+  }
+
+  @override
+  Unit setupBackgroundNotification() {
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    return unit;
+  }
+
+  @override
+  Future<Unit> saveUserToken() async {
+    try {
+      final token = await firebaseMessaging.getToken();
+      final userDoc = await firestore.userDocument();
+      await userDoc.set({"fcmToken": token}, SetOptions(merge: true));
+      return unit;
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Unit> saveLastNotificatedTime() async {
+    try {
+      final userDoc = await firestore.userDocument();
+      await userDoc.set({"lastNotified": DateTime.now().millisecondsSinceEpoch},
+          SetOptions(merge: true));
+      return unit;
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<bool> checkUserTokenExists() async {
+    try {
+      final userDoc = await firestore.userDocument();
+      final snapshot = await userDoc.get();
+      final data = snapshot.data() as Map<String, dynamic>?;
+      if (data == null) {
+        return false;
+      }
+      return data.containsKey("fcmToken");
+    } catch (e) {
+      throw ServerException();
+    }
   }
 }
