@@ -2,8 +2,11 @@ name: CD
 
 on:
   push:
+    paths:
+      - 'src/exposure'
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   release:
@@ -21,7 +24,7 @@ jobs:
         with:
           flutter-version: '2.2.3'
       - run: flutter pub get
-      - run: flutter test
+      - run: flutter test --no-test-assets
       - name: Build Android App
         run: flutter build apk --obfuscate --split-debug-info --split-per-abi
       - name: Build iOS App
