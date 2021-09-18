@@ -7,39 +7,35 @@ const fcm = admin.messaging();
 
 const DAYS_TO_DELETE = 14 * 24 * 60 * 60 * 1000; // 14 days in milliseconds
 
-
-exports.removeOldPlaces = functions.firestore.document('/infected/{wildcard}')
+exports.removeUserOldPlaces = functions.firestore.document('users/{userId}/locations/{location}')
     .onCreate(async (change, context) => {
-        var now = Date.now();
-        var cutoff = now - DAYS_TO_DELETE;
+        const snapshot = await db.collection('users')
+            .doc(context.params.userId)
+            .collection('locations')
+            .get();
+
+        const path = "users/" + context.params.userId + "/locations/";
+
+        deleteOldPlaces(snapshot, path);
+    });
+
+
+exports.removeInfectedOldPlaces = functions.firestore.document('/infected/{wildcard}')
+    .onCreate(async (change, context) => {
         const docs = db.collection('infected');
         const snapshot = await docs.get();
 
-        snapshot.forEach(doc => {
-            var docData = doc.data();
-            try {
-                if (docData['departure'] < cutoff) {
-                    var reference = db.doc('infected/' + doc.id);
-                    reference.delete()
-                        .then(function () {
-                            console.log("Remove succeeded.");
-                        })
-                        .catch(function (error) {
-                            console.log("Remove failed: " + error.message);
-                        });
-                }
-            } catch (error) {
-                console.log("The error " + error + " was raised when trying to delete old places");
-            }
-        });
-        await notifyUsers(cutoff);
+        deleteOldPlaces(snapshot, "infected/");
+        await notifyUsers();
     });
 
-async function notifyUsers(cutoff) {
+async function notifyUsers() {
     const docs = db.collection('users');
     const usersSnapshot = (await docs.get()).docs;
     const infected = db.collection("infected");
     const infectedPlacesSnapshot = (await infected.get()).docs;
+    var now = Date.now();
+    var cutoff = now - DAYS_TO_DELETE;
 
     const deviceTokens = usersSnapshot.map(async (user) => {
         const lastNotified = (await db.collection('users')
@@ -49,10 +45,8 @@ async function notifyUsers(cutoff) {
             .lastNotified;
 
         if (lastNotified > cutoff) {
-            console.log("Usuario " + user.id + " foi notificado recentemente, não há necessidade de notificar de novo")
             return
         }
-        console.log("Usuario " + user.id + " não foi notificado recentemente, precisamos checar se ele precisara ser notificado")
 
         const visitedPlaces = (await db.collection('users')
             .doc(user.id)
@@ -114,4 +108,26 @@ async function notifyUsers(cutoff) {
                 })
             }
         });
+}
+
+function deleteOldPlaces(snapshot, path) {
+    var now = Date.now();
+    var cutoff = now - DAYS_TO_DELETE;
+    snapshot.forEach(doc => {
+        var docData = doc.data();
+        try {
+            if (docData['departure'] < cutoff) {
+                var reference = db.doc(path + doc.id);
+                reference.delete()
+                    .then(function () {
+                        console.log("Remove with " + docData["latitude"] + " successful.");
+                    })
+                    .catch(function (error) {
+                        console.log("Remove failed: " + error.message);
+                    });
+            }
+        } catch (error) {
+            console.log("The error " + error + " was raised when trying to delete old places");
+        }
+    });
 }
