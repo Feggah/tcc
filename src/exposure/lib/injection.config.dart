@@ -109,8 +109,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i33.IAuthRepository>(() => _i34.AuthRepositoryImpl(
       firebaseDataSource: get<_i15.IFirebaseDataSource>(),
       networkInfo: get<_i12.NetworkInfo>()));
-  gh.factory<_i35.InfectedBloc>(
-      () => _i35.InfectedBloc(saveInfected: get<_i23.SaveInfected>()));
+  gh.factory<_i35.InfectedBloc>(() => _i35.InfectedBloc(
+      saveInfected: get<_i23.SaveInfected>(),
+      saveLastNotificatedTime: get<_i24.SaveLastNotificatedTime>()));
   gh.factory<_i36.NotificationBloc>(() => _i36.NotificationBloc(
       createNotification: get<_i30.CreateNotification>(),
       saveLastNotifiedTime: get<_i24.SaveLastNotificatedTime>(),
