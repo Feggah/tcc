@@ -69,7 +69,7 @@ class CheckInTime extends StatelessWidget {
       context: context,
       fromText: "Chegada",
       toText: "Saída",
-      interval: const Duration(minutes: 1),
+      interval: const Duration(minutes: 10),
       strokeColor: CustomColor.main,
       handlerColor: CustomColor.secondaryText,
       selectedColor: CustomColor.button,
