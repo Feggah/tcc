@@ -20,6 +20,7 @@ dependencies:
   equatable: ^2.0.3
   firebase_auth: ^3.1.0
   firebase_core: ^1.6.0
+  firebase_messaging: ^10.0.7
   flutter_bloc: ^7.1.0
   flutter_svg: ^0.22.0
   freezed_annotation: ^0.14.2
@@ -27,6 +28,7 @@ dependencies:
   injectable: ^1.4.1
   internet_connection_checker: ^0.0.1+2
   intl: ^0.17.0
+  overlay_support: ^1.2.1
   time_range_picker: ^2.0.1
 
 dev_dependencies:
