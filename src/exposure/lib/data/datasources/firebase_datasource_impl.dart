@@ -127,18 +127,12 @@ class FirebaseDataSourceImpl implements IFirebaseDataSource {
         .subtract(const Duration(days: 14))
         .millisecondsSinceEpoch;
     return lastSaved > threshold;
-    // if (lastSaved > threshold) {
-    //   return true;
-    // }
-
-    // return false;
   }
 
   @override
   Future<Unit> requestPermission() async {
     await firebaseMessaging.requestPermission();
     return unit;
-    // return settings.authorizationStatus.toString();
   }
 
   @override
