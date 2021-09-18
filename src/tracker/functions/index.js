@@ -82,8 +82,8 @@ async function notifyUsers() {
     webpush = {
         notification: {
             notification: {
-                title: "Atenção! Você pode ter tido contato com uma doença infecciosa",
-                body: "Uma pessoa infectada frequentou o mesmo lugar que você, evite encontrar outras pessoas!",
+                title: "Alerta de exposição",
+                body: "Uma pessoa infectada por uma doença infecciosa frequentou o mesmo lugar que você! Evite encontrar outras pessoas.",
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK'
