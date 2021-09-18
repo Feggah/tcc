@@ -1,0 +1,9 @@
+{
+    "name": "test",
+    "address": "test",
+    "photoReference": "test",
+    "latitude": 1,
+    "longitude": 2,
+    "arrival": 1628290453000,
+    "departure": 1628290753000
+}

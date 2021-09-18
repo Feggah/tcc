@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+web/
 
 # IntelliJ related
 *.iml
@@ -877,3 +878,9 @@ DerivedData/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Misc
+
+.flutter-plugins-dependencies
+secret.json
+coverage/
