@@ -65,7 +65,7 @@ class CheckInDay extends StatelessWidget {
     final DateTime? result = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime.now().subtract(const Duration(days: 30)),
+      firstDate: DateTime.now().subtract(const Duration(days: 14)),
       lastDate: DateTime.now(),
       helpText: "SELECIONE UMA DATA",
     );
