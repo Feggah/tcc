@@ -4,3 +4,6 @@ generate:
 reviewable:
 	flutter analyze
 	flutter test
+
+apk:
+	flutter build apk --obfuscate --split-debug-info --split-per-abi
