@@ -2,10 +2,12 @@ import 'package:exposure/injection.dart';
 import 'package:exposure/presentation/routes/router.gr.dart';
 import 'package:exposure/presentation/view/colors.dart';
 import 'package:exposure/presentation/viewmodel/auth_bloc.dart';
+import 'package:exposure/presentation/viewmodel/configure_notification_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,17 +30,23 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               getIt<AuthBloc>()..add(const AuthEvent.checkAuthentication()),
         ),
+        BlocProvider(
+          create: (context) => getIt<ConfigureNotificationBloc>(),
+        ),
       ],
-      child: MaterialApp.router(
-        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
-        supportedLocales: const [Locale('pt', 'BR')],
-        title: "Exposure",
-        theme: ThemeData(
-            primaryColor: CustomColor.background,
-            accentColor: CustomColor.background,
-            scaffoldBackgroundColor: CustomColor.background),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        routerDelegate: _appRouter.delegate(),
+      child: OverlaySupport(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+          supportedLocales: const [Locale('pt', 'BR')],
+          title: "Exposure",
+          theme: ThemeData(
+              primaryColor: CustomColor.background,
+              accentColor: CustomColor.background,
+              scaffoldBackgroundColor: CustomColor.background),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerDelegate: _appRouter.delegate(),
+        ),
       ),
     );
   }
