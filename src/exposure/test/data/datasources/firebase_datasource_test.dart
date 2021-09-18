@@ -9,6 +9,7 @@ import 'package:exposure/domain/entities/location.dart';
 import 'package:exposure/injection.dart';
 import 'package:exposure/shared/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -17,11 +18,14 @@ class MockFirebaseFirestore extends Mock implements FirebaseFirestore {}
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 
+class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
+
 class MockDio extends Mock implements Dio {}
 
 void main() {
   late MockFirebaseFirestore mockFirebaseFirestore;
   late MockFirebaseAuth mockFirebaseAuth;
+  late MockFirebaseMessaging mockFirebaseMessaging;
   late FirebaseDataSourceImpl firebaseDataSource;
   late GoogleDataSourceImpl googleDataSource;
   late MockDio mockDio;
@@ -43,6 +47,7 @@ void main() {
   setUp(() {
     mockFirebaseFirestore = MockFirebaseFirestore();
     mockFirebaseAuth = MockFirebaseAuth();
+    mockFirebaseMessaging = MockFirebaseMessaging();
     mockDio = MockDio();
     secretDataSource = SecretDataSourceImpl();
     googleDataSource = GoogleDataSourceImpl(
@@ -51,6 +56,7 @@ void main() {
       firestore: mockFirebaseFirestore,
       googleDataSource: googleDataSource,
       firebaseAuth: mockFirebaseAuth,
+      firebaseMessaging: mockFirebaseMessaging,
     );
   });
 
