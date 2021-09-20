@@ -15,6 +15,7 @@ class Home extends StatelessWidget {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
+          selectedItemColor: CustomColor.main,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           currentIndex: tabsRouter.activeIndex,
@@ -22,18 +23,10 @@ class Home extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.grid_view_sharp),
-              activeIcon: Icon(
-                Icons.grid_view_sharp,
-                color: CustomColor.main,
-              ),
               label: "Location",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.medical_services),
-              activeIcon: Icon(
-                Icons.medical_services,
-                color: CustomColor.main,
-              ),
               label: "Infected",
             ),
           ],
