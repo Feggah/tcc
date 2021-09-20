@@ -3,11 +3,11 @@ name: CI
 on:
   push:
     paths:
-      - 'src/exposure'
+      - 'src/exposure/**'
     branches: [ main, develop ]
   pull_request:
     paths:
-      - 'src/exposure'
+      - 'src/exposure/**'
     branches: [ main, develop ]
   workflow_dispatch:
 
