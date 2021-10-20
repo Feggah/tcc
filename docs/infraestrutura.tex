@@ -1,6 +1,6 @@
 \chapter{Infraestrutura}\label{chp:infraestrutura}
 
-Para a realização da solução proposta neste trabalho, recursos de infraestrutura são necessários para que seja possível a execução de rotinas de rastreamento de contatos no servidor, utilização do BD e da comunicação entre o cliente e o servidor. Assim, na Seção \ref{sec:firebase} será explicado o que é e para que serve um serviço de \textit{backend}, quais recursos de infraestrutura serão utilizados e o que são os sistemas de autenticação e o envio de mensagens. Na Seção \ref{sec:firestore} será explicado sobre a solução de BD da plataforma \textit{Firebase} e o que cada entidade dele significa. Na Seção \ref{sec:cloudfunctions} será explicado o que é a \textit{Cloud Function} e qual será a responsabilidade dela neste projeto. Por fim, na Seção \ref{sec:pubsub} será explicado sobre a solução de mensageria da GCP, o \textit{Pub/Sub}, em que serão abordadas as entidades relacionadas a esse serviço, qual a responsabilidade de cada uma delas e qual será a responsabilidade desse serviço neste trabalho.
+Para a realização da solução proposta neste trabalho, recursos de infraestrutura são necessários para que seja possível a execução de rotinas de rastreamento de contatos no servidor, utilização do BD e da comunicação entre o cliente e o servidor. Assim, na Seção \ref{sec:firebase} será explicado o que é e para que serve um serviço de \textit{backend}, quais recursos de infraestrutura serão utilizados e o que são os sistemas de autenticação e o envio de mensagens. Na Seção \ref{sec:firestore} será explicado sobre a solução de BD da plataforma \textit{Firebase} e o que cada entidade dele significa. Por fim, na Seção \ref{sec:cloudfunctions} será explicado o que é a \textit{Cloud Function} e qual será a responsabilidade dela neste projeto.
 
 \section{Serviço de \textit{Backend}}\label{sec:firebase}
 
@@ -20,7 +20,7 @@ Porém, algumas configurações não são possíveis de serem feitas diretamente
 
 A principal vantagem competitiva do \textit{Firebase} quando comparado a outras plataformas é a alta produtividade que ele traz ao desenvolvimento de aplicativos.
 
-Os serviços do \textit{Firebase} que serão utilizados neste trabalho são o sistema de autenticação, o envio de notificações, o BD e as \textit{Cloud Functions}. Em conjunto a esses serviços, também será utilizado um recurso exclusivo da GCP, que é o \textit{Pub/Sub}.
+Os serviços do \textit{Firebase} que serão utilizados neste trabalho são o sistema de autenticação, o envio de notificações, o BD e as \textit{Cloud Functions}.
 
 Começando pela autenticação, ela é a peça chave para que os locais visitados pelos usuários sejam salvos em seus respectivos documentos no BD, dando uma experiência personalizada no aplicativo. Essa autenticação pode ser feita de diversas formas diferentes, algumas delas são o \textit{login} utilizando \textit{e-mail} e senha, número de telefone celular, redes sociais e autenticação anônima.
 
@@ -88,17 +88,4 @@ Para melhor visualização da estrutura hierárquica do \textit{Firestore}, a es
 
 A \textit{Cloud Function} é o produto de função como serviço para criar aplicações com base em eventos, disponibilizado pelas plataformas \textit{Firebase} e GCP. Ela é uma maneira de ampliar o comportamento de um aplicativo e integrar com outros recursos disponíveis na plataforma por meio da adição de código no servidor. Com base nisso, ela serve como camada conectiva, disponibilizando a construção de lógicas entre os serviços da plataforma por meio da detecção e da resposta a eventos.
 
-No caso de uso deste trabalho, a \textit{Cloud Function} consome os eventos publicados no \textit{Pub/Sub}, tratando-os através da execução do trecho de código implementado na função.
-
-\section{\textit{Pub/Sub}}\label{sec:pubsub}
-
-\textcite{PubSubDocs} é um serviço de mensagens assíncronas, que oferece um armazenamento de mensagens com alta disponibilidade, desempenho e grande escala. Esse serviço funciona através do conjunto dos 4 conceitos abaixo:
-
-\begin{itemize}
-    \item Mensagem: combinação de dados e atributos enviados a um tópico pelo \textit{publisher};
-    \item Atributo de mensagem: par chave-valor que o \textit{publisher} pode definir para uma mensagem;
-    \item Tópico: recurso para o qual os \textit{publishers} enviam as mensagens;
-    \item Assinatura: recurso que representa o fluxo de mensagens que deve ser entregue aos \textit{subscribers} de um tópico específico;
-\end{itemize}
-
-No caso deste trabalho, o \textit{Pub/Sub} foi utilizado para integrar os eventos de escrita do \textit{Firestore} com a rotina de rastreamento de contatos, que foi implementada na \textit{Cloud Function}.
+No caso de uso deste trabalho, a \textit{Cloud Function} consome os eventos de escrita em coleções específicas no \textit{Firestore}, tratando-os através da execução do trecho de código implementado na função.
