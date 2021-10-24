@@ -1,6 +1,6 @@
 \chapter{Desenvolvimento}\label{chp:desenvolvimento}
 
-Para realização da solução proposta nesse trabalho, é necessário o desenvolvimento de um aplicativo móvel para que o rastreamento de doenças infecciosas ocorra de forma automática. Assim, na Seção \ref{sec:requisitos} são apresentados os requisitos funcionais e não funcionais do sistema, junto com a análise de cada um deles. A Seção \ref{sec:modelagem} tem o propósito de apresentar todo o processo de modelagem do sistema, discutindo sobre o racional por trás de cada modelagem e apresentando os diagramas construídos. Na Seção \ref{sec:uiux} são apresentadas as interfaces construídas para o aplicativo. A Seção \ref{sec:implementacao} contém a implementação das interfaces, modelagens e infraestrutura do sistema, utilizando o fluxo de trabalho \textit{GitFlow}.
+Para realização da solução proposta nesse trabalho, é necessário o desenvolvimento de um aplicativo móvel para que o rastreamento de doenças infecciosas ocorra de forma automática. Assim, na Seção \ref{sec:requisitos} são apresentados os requisitos funcionais e não funcionais do sistema, junto com a análise de cada um deles. A Seção \ref{sec:modelagem} tem o propósito de apresentar todo o processo de modelagem do sistema, discutindo sobre o racional por trás de cada modelagem e apresentando os diagramas construídos. Na Seção \ref{sec:uiux} são apresentadas as interfaces construídas para o aplicativo. A Seção \ref{sec:implementacao} contém a implementação das interfaces do usuário, modelagens e infraestrutura do sistema, utilizando o fluxo de trabalho \textit{GitFlow}.
 
 \section{Levantamento e Análise de Requisitos}\label{sec:requisitos}
 O aplicativo deve automatizar todo o ciclo do rastreamento, desde a captura da exposição à uma doença, até a notificação feita à pessoa possivelmente exposta. Com isso, a partir do problema de rastreamento de contatos apresentado no Capítulo \ref{chp:Introducao}, o processo de análise de requisitos foi feito pensando nos possíveis casos de uso do usuário.
@@ -11,7 +11,7 @@ Levando em consideração o tempo de desenvolvimento do aplicativo e o número d
 
 Além disso, como o aplicativo armazena os dados de localizações dos usuários, ele deve se preocupar em garantir a segurança dos mesmos. Essa segurança será garantida a partir da utilização de criptografia. Ela será aplicada aos dados em trânsito, ou seja, durante a comunicação entre cliente e servidor.
 
-Ainda relacionado à segurança, a fim de preservar a privacidade das pessoas que utilizarem o aplicativo, a aplicação ou os usuários não devem ser capazes de descobrir quem possivelmente expôs outras pessoas a alguma doença. Isso significa que quando um usuário receber uma notificação de exposição, ele não será capaz de identificar quem foi, nem o local que isso ocorreu. Para isso, o aplicativo não terá a inserção de nenhum dado pessoal, ou seja, a autenticação será feita de forma anônima, onde cada usuário será representado por uma cadeia de caracteres aleatórios.
+Ainda relacionado à segurança, a fim de preservar a privacidade das pessoas que utilizarem o aplicativo, a aplicação ou os usuários não devem ser capazes de descobrir quem possivelmente expôs outras pessoas à alguma doença. Isso significa que quando um usuário receber uma notificação de exposição, ele não será capaz de identificar quem foi, nem o local que isso ocorreu. Para isso, o aplicativo não terá a inserção de nenhum dado pessoal, ou seja, a autenticação será feita de forma anônima, onde cada usuário será representado por uma cadeia de caracteres aleatórios.
 
 Por último, toda localização terá prazo de validade de 14 dias. Isso significa que todo local visitado pelo usuário será armazenado apenas durante esse prazo. Como a solução do problema é a automação do rastreamento de contatos, localizações mais antigas do que esses dias não são necessárias, já que o período de contágio e transmissão do vírus haveria terminado.
 
@@ -203,7 +203,7 @@ Por último, a funcionalidade "Listar locais visitados" está representada pelo 
 \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.25]{Diagrama de sequencia - Listar locais.png}
-  \caption{Diagrama de sequência da funcionalidade listar.}
+  \caption{Diagrama de sequência da funcionalidade listar locais.}
   \label{fig:sequencialistar}
 \end{figure}
 
@@ -271,7 +271,7 @@ Com todos diagramas mostrados anteriormente modelados, o diagrama de classes foi
   \label{fig:diagramadeclasses}
 \end{figure}
 
-\subsection{Modelagem de dados}
+\subsection{Modelagem de dados}\label{sec:modelagemdedados}
 O sistema de rastreamento de dados necessita apenas de algumas informações persistidas sobre os usuários para que a análise de encontro entre eles seja efetuada com sucesso. 
 
 Para cada usuário deverá ser armazenado os locais visitados e um identificador aleatório que possibilita o envio de notificações ao seu dispositivo móvel. Para isso, será utilizado uma coleção no \textit{Firestore} chamada \textit{users}. Nela serão armazenados múltiplos documentos, em que cada um representa um usuário. Em cada documento haverá o \textit{token} e a subcoleção dos locais visitados.
@@ -328,9 +328,9 @@ O rótulo \textit{feature} representa uma funcionalidade a ser implementada no s
 
 O rótulo \textit{documentation} está relacionado a tarefas de desenvolvimento do texto da monografia. Por exemplo, uma \textit{issue} que representa o desenvolvimento de um dos capítulos deste trabalho.
 
-A última classificação, o rótulo \textit{diagram}, representa tarefas que estavam relacionadas a modelagem dos diagramas criados para este trabalho. No caso desse rótulo, foi utilizado uma \textit{issue} para cada tipo de diagrama, ou seja, a \textit{issue} sobre o diagrama de atividades representava a modelagem dos seis diagramas criados. 
+A última classificação, o rótulo \textit{diagram}, representa tarefas que estavam relacionadas a modelagem dos diagramas criados para este trabalho. No caso desse rótulo, foi utilizado uma \textit{issue} para cada tipo de diagrama, por exemplo, a \textit{issue} sobre o diagrama de atividades representava a modelagem dos seis diagramas criados. 
 
-Para que a visualização e progresso das \textit{issues} fosse melhor visualizado, foi utilizado um quadro \textit{Kanban}, funcionalidade oferecida nativamente pelo \textit{GitHub}, que são chamados de projetos. Foram criados dois projetos, um representando a implementação de todo o sistema e o outro o desenvolvimento da monografia e assuntos relacionados.
+Para que a visualização e progresso das \textit{issues} fosse melhor visualizado, foi utilizado um quadro \textit{Kanban} oferecido nativamente pelo \textit{GitHub}, que são chamados de projetos. Foram criados dois projetos, um representando a implementação de todo o sistema e o outro o desenvolvimento da monografia e assuntos relacionados.
 
 Os dois quadros \textit{Kanbans} foram divididos em três colunas: \textit{To do}, \textit{in progress} e \textit{done}. As \textit{issues} que estavam dentro de cada quadro eram movidas conforme o seu estado mudava em relação a coluna que ela estava inserida. Por exemplo, a \Figura{fig:kanbanmono} representa o estado do quadro da monografia durante o desenvolvimento desta seção.
 
@@ -352,7 +352,7 @@ Para exemplificar o fluxo completo do \textit{GitFlow} na prática, a \Figura{fi
   \label{fig:cfpr}
 \end{figure}
 
-Depois de algumas iterações de funcionalidades mescladas na ramificação \textit{develop}, a ramificação \textit{release} é criada a partir da \textit{develop} e são criados dois \textit{pull requests}, um para a \textit{main} e outro para a \textit{develop} (é necessário para a \textit{develop} porque podem haver novas modificações na \textit{release}). A \Figura{fig:releasemainpr} representa o \textit{pull request} para a main e a \Figura{fig:releasedeveloppr} para a \textit{develop}.
+Depois de algumas iterações de funcionalidades mescladas na ramificação \textit{develop}, a ramificação \textit{release} é criada a partir da \textit{develop} e são criados dois \textit{pull requests}, um para a \textit{main} e outro para a \textit{develop}. A \Figura{fig:releasemainpr} representa o \textit{pull request} para a main e a \Figura{fig:releasedeveloppr} para a \textit{develop}.
 
 \begin{figure}[!htb]
   \centering
@@ -368,7 +368,7 @@ Depois de algumas iterações de funcionalidades mescladas na ramificação \tex
   \label{fig:releasedeveloppr}
 \end{figure}
 
-Com isso, a ramificação principal do repositório possui as novas funcionalidades desenvolvidas e uma nova versão está pronta para ser lançada. O lançamento de versão é feito adicionando uma \textit{tag}, que fixa um ponto histórico no repositório que representa uma versão da aplicação.
+Com isso, a ramificação principal do repositório possui as novas funcionalidades desenvolvidas e uma nova versão está pronta para ser lançada. O lançamento de versão é feito adicionando uma \textit{tag}, que fixa um ponto histórico no repositório e representa uma versão da aplicação.
 
 Com a nova \textit{tag} criada, um novo lançamento é feito através da funcionalidade de \textit{releases} do \textit{GitHub}. Uma \textit{release} contém título, descrição, a \textit{tag} que está associada à ela e arquivos que possam fazer parte desse lançamento. No caso do aplicativo, uma release contém o arquivo \Sigla{\textit{Android Package}}{APK} que pode ser baixado e instalado nos dispositivos. A \Figura{fig:currentreleases} representa os lançamentos feitos no repositório.
 
@@ -434,4 +434,81 @@ O aplicativo possui uma extensa lista de dependências em bibliotecas de terceir
   \item \textit{Get\underline{\space}it}, que é uma biblioteca para utilização do padrão de projeto \textit{Service Locator} para \textit{Dart} e \textit{Flutter}. Esse padrão de projeto é usado para encapsular os processos envolvidos na obtenção de um serviço com uma forte camada de abstração;
   \item \textit{Equatable}, que facilita a comparação de equalidade entre objetos;
   \item \textit{Freezed}, que é um gerador de código para classes imutáveis, introduzindo métodos auxiliares para seus objetos;
+  \item \textit{Injectable}, que é um gerador de código para a biblioteca \textit{get\underline{\space}it};
 \end{itemize}
+
+Uma das partes mais importantes da implementação do aplicativo é a inversão de dependências, já explicado na subseção \ref{sec:D}. Essa inversão foi implementada utilizando a biblioteca \textit{injectable}.
+
+Para fins de exemplificação, abaixo está exemplificado uma inversão de dependência entre a camada de domínio e a de dados, mais especificamente entre o caso de uso e o repositório.
+
+A dependência do código está do repositório para o caso de uso e o fluxo de dados do caso de uso ao repositório. Para atigir isso, na camada de domínio foi definida a interface do repositório, que neste exemplo é a \textit{ILocationRepository}, representada pela \Figura{fig:locationrepository}.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.7]{ilocationrepository.png}
+  \caption{\textit{Printscreen} da interface \textit{ILocationRepository}.}
+  \label{fig:locationrepository}
+\end{figure}
+
+Na mesma camada temos o caso de uso \textit{ListLocation}, representado na \Figura{fig:listlocation}, que depende da interface \textit{ILocationRepository}. Essa dependência não fere os princípios da arquitetura limpa porque ambos estão na mesma camada.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.7]{listlocation.png}
+  \caption{\textit{Printscreen} do caso de uso \textit{ListLocation}.}
+  \label{fig:listlocation}
+\end{figure}
+
+Para que a inversão de dependência ocorra, em tempo de execução o atributo \textit{repository} da classe \textit{ListLocation} receberá uma instância da classe \textit{LocationRepositoryImpl} no lugar da \textit{ILocationRepository}. Isso será possível por conta do princípio de Liskov, explicado na subseção \ref{sec:liskov}.
+
+A classe que implementa a interface \textit{ILocationRepository} é chamada de \textit{LocationRepositoryImpl} e está representada na \Figura{fig:locationimpl}. Note que o decorador da classe, que foi importado da biblioteca \textit{injectable}, faz com que as instâncias da classe sejam utilizadas nos atributos do tipo \textit{ILocationRepository}.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.8]{locationimpl.png}
+  \caption{\textit{Printscreen} da classe \textit{LocationRepositoryImpl}.}
+  \label{fig:locationimpl}
+\end{figure}
+
+Esse mesmo modelo foi implementado em todas as fronteiras entre camadas, definindo a interface em uma camada e sua implementação em outra. Com isso, esse princípio da arquitetura limpa foi cumprido em todo aplicativo.
+
+A implementação da \textit{cloud function} que faz a análise do rastreamento entre contatos é responsável por notificar os usuários que forem expostos à alguma doença. A notificação recebida por um dispositivo está exemplificada na \Figura{fig:appnotification}.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.3]{app-notification.jpeg}
+  \caption{\textit{Printscreen} da notificação recebida no dispositivo celular.}
+  \label{fig:appnotification}
+\end{figure}
+
+Um usuário deverá ser notificado se:
+
+\begin{itemize}
+  \item A latitude e longitude dos locais salvos são as mesmas. Isso evita falsos positivos em locais com o mesmo nome mas em localizações diferentes. Por exemplo, franquias de uma empresa que estão localizadas em cidades diferentes;
+  \item O horário de chegada do usuário é menor que o horário de saída do infectado;
+  \item O horário de chegada do infectado é menor que o horário de saída do usuário sendo analisado;
+\end{itemize}
+
+Se todas as condições forem verdadeiras, utiliza-se o \textit{fcmToken}, explicado anteriormente na subseção \ref{sec:modelagemdedados}, do documento que representa o usuário para enviar uma notificação ao seu dispositivo. O trecho de código da \Figura{fig:cfscript} referente ao \textit{script} da \textit{cloud function} representa essa análise.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.55]{cloudfunction-analysis.png}
+  \caption{\textit{Printscreen} do trecho de código da \textit{cloud function}.}
+  \label{fig:cfscript}
+\end{figure}
+
+As \textit{cloud functions} são definidas a partir de uma sintaxe em que é especificado o evento e o caminho da coleção que serão utilizados para ativá-la. Os possíveis eventos são \textit{OnCreate}, \textit{onUpdate}, \textit{onDelete} e \textit{onWrite}, que respectivamente correspodem aos eventos de criação, alteração, deleção ou todos anteriores.
+
+As duas \textit{cloud functions} desenvolvidas neste trabalho são ativadas a partir de eventos de criação, uma na coleção de locais infectados e outra na subcoleção de locais salvos pelo usuário. A \Figura{fig:cfdeclaration} representa a declaração dessas funções.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.75]{cloudfunction-declaration.png}
+  \caption{\textit{Printscreen} da declaração das \textit{cloud functions}.}
+  \label{fig:cfdeclaration}
+\end{figure}
+
+Em relação a autenticação dos usuários, os IDs são criados aleatoriamente pelo serviço de autenticação do \textit{Firebase}. Como explicado em capítulos anteriores, a autenticação é feita de forma anônima e por conta disso a real identidade do usuário é preservada. Os únicos dados que podem ser extraídos dessa autenticação são a data de criação da conta, a data do último \textit{login} e o seu ID aleatório.
+
+Todo mecanismo de autenticação é feito de forma transparente ao usuário no momento que ele inicia o aplicativo pela primeira vez. Caso o aplicativo seja deletado e instalado novamente, uma nova conta será criada, já que não há mecanismos de associação para definir a real identidade de cada usuário fora do sistema.
