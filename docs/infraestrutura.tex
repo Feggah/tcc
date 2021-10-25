@@ -24,13 +24,13 @@ Os serviços do \textit{Firebase} que serão utilizados neste trabalho são o si
 
 Começando pela autenticação, ela é a peça chave para que os locais visitados pelos usuários sejam salvos em seus respectivos documentos no BD, dando uma experiência personalizada no aplicativo. Essa autenticação pode ser feita de diversas formas diferentes, algumas delas são o \textit{login} utilizando \textit{e-mail} e senha, número de telefone celular, redes sociais e autenticação anônima.
 
-A autenticação anônima, que é o único método de autenticação utilizado pelo aplicativo, é criado pelo próprio \textit{Firebase}. Ela é necessária somente para que o aplicativo diferencie os usuários para efetuar o rastreamento, sem precisar de informações pessoais do mesmo.
+A autenticação anônima, que é o único método de autenticação utilizado pelo aplicativo e explicado com mais detalhes no Capítulo \ref{chp:desenvolvimento}, é criado pelo próprio \textit{Firebase}. Ela é necessária somente para que o aplicativo diferencie os usuários para efetuar o rastreamento, sem precisar de informações pessoais do mesmo.
 
 Outro serviço que será utilizado é o \Sigla{\textit{Firebase Cloud Messaging}}{FCM}, que é responsável pelo envio de notificações aos usuários que forem possivelmente expostos à alguma doença infecciosa.
 
 O FCM é bastante flexível e possui algumas funcionalidades que atendem diferentes casos de uso. A principal funcionalidade são as formas que a notificação pode ser enviada para o cliente, que são para dispositivos únicos, grupos de dispositivos ou para os dispositivos inscritos em tópicos. 
 
-O envio de notificações deve ser feito de forma automática, para isso, os outros 3 recursos de infraestrutura trabalharão em conjunto para que a implementação da lógica do envio de mensagens seja feita com sucesso.
+O envio de notificações deve ser feito de forma automática, para isso, o \textit{Firestore} e as \textit{Cloud Functions} trabalharão em conjunto para que a implementação da lógica do envio de mensagens seja feita com sucesso.
 
 \section{\textit{Firestore}}\label{sec:firestore}
 
