@@ -1,6 +1,6 @@
 \chapter{Referencial teórico}\label{chp:referencial}
 % Para realização deste trabalho, é necessário o desenvolvimento de um aplicativo móvel para que o rastreamento de doenças infecciosas ocorra de forma automática. Assim, na seção X ...
-Para sustentar o desenvolvimento deste trabalho, padrões de desenvolvimento, de modelagem, linguagens de programação e outros assuntos foram pesquisados. Assim, a Seção \ref{sec:infecciosas} trata das pesquisas realizadas em relação à doenças infecciosas, procurando entender quais são os tipos de doenças que o aplicativo pode ajudar no rastreamento. Na Seção \ref{sec:uml} são elencados os tipos de diagramas UML foram utilizados e os motivo dessa decisão. Na Seção \ref{sec:clean} é explicado qual a arquitetura de \textit{software} utilizada na codificação do aplicativo, como ela funciona e quais são os benefícios de sua utilização. A Seção \ref{sec:repositorypattern} possui a explicação do Padrão de Repositório. A Seção \ref{sec:flutter} possui o propósito de explicar qual foi o \textit{framework} de desenvolvimento escolhido e o motivo de sua escolha. Na Seção \ref{sec:solid} é explicado cada um dos princípios utilizados no processo de desenvolvimento da aplicação. A Seção \ref{sec:eventos} trata da arquitetura utilizada no processo de \textit{design} do sistema, explicando seu funcionamento e benefícios. Na Seção \ref{sec:bd} são elencadas as principais características do tipo de BD escolhido para o sistema. A Seção \ref{sec:Git} explica sobre o fluxo de trabalho baseado na ferramenta \textit{Git} que foi utilizado no desenvolvimento do projeto. Na Seção \ref{sec:pipelines} os benefícios de utilização de \textit{pipelines} de integração e entrega contínuas são elencados, juntamente com os objetivos de utilização dessa ferramenta. A Seção \ref{sec:googlefirebase} explica o motivo de utilização de serviços na nuvem, quais foram necessários e os principais motivos dessa escolha.
+Para sustentar o desenvolvimento deste trabalho, padrões de desenvolvimento, de modelagem, linguagens de programação e outros assuntos foram pesquisados. Assim, a Seção \ref{sec:infecciosas} trata das pesquisas realizadas em relação à doenças infecciosas, procurando entender quais são os tipos de doenças que o aplicativo pode ajudar no rastreamento. Na Seção \ref{sec:uml} são elencados os tipos de diagramas UML que foram utilizados e os motivos dessa decisão. Na Seção \ref{sec:clean} é explicado qual a arquitetura de \textit{software} utilizada na codificação do aplicativo, como ela funciona e quais são os benefícios de sua utilização. A Seção \ref{sec:repositorypattern} possui a explicação do Padrão de Repositório. A Seção \ref{sec:flutter} possui o propósito de explicar qual foi o \textit{framework} de desenvolvimento escolhido e o motivo de sua escolha. Na Seção \ref{sec:solid} é explicado cada um dos princípios utilizados no processo de desenvolvimento da aplicação. A Seção \ref{sec:eventos} trata da arquitetura utilizada no processo de \textit{design} do sistema, explicando seu funcionamento e benefícios. Na Seção \ref{sec:bd} são elencadas as principais características do tipo de BD escolhido para o sistema. A Seção \ref{sec:Git} explica sobre o fluxo de trabalho baseado na ferramenta \textit{Git} que foi utilizado no desenvolvimento do projeto. Na Seção \ref{sec:pipelines} os benefícios de utilização de \textit{pipelines} de integração contínua são elencados, juntamente com os objetivos de utilização dessa ferramenta. A Seção \ref{sec:googlefirebase} explica o motivo de utilização de serviços na nuvem, quais foram necessários e os principais motivos dessa escolha.
 
 \section{Doenças infecciosas}\label{sec:infecciosas}
 % Aplicativo suporta doenças infecciosas transmitidas pelo ar
@@ -16,7 +16,7 @@ As doenças contagiosas que o rastreamento de contatos efetuado pelo aplicativo 
 % UML
 Como parte do processo de análise do sistema, as diagramações foram feitas seguindo os padrões UML, que é uma linguagem de modelagem utilizada para especificar, visualizar e documentar modelos de sistemas de \textit{software}, incluindo sua estrutura e \textit{design} \cite{uml}.
 
-Existem diversos tipos de diagramas UML e eles são dividos em duas categorias: os estruturais e o comportamentais. A \Figura{fig:umloverview} representa os tipos de diagrama de cada uma das categorias.
+Existem diversos tipos de diagramas UML e eles são dividos em duas categorias: os estruturais e os comportamentais. A \Figura{fig:umloverview} representa os tipos de diagrama de cada uma das categorias.
 
 \begin{figure}[!htb]
     \centering
@@ -102,15 +102,13 @@ Segundo \textcite{ddd}, alguns dos benefícios da utilização desse padrão sã
 
 O repositório será utilizado para atender a regra de dependência da arquitetura limpa, fazendo com que os casos de uso não dependam da implementação das consultas feitas aos agentes externos, que estão presentes em camadas mais exteriores.
 
-No processo de modelagem da arquitetura da aplicação, presente na Seção \ref{sec:modelagem}, é explicitado com detalhes a maneira que o padrão será utilizado no sistema.
-
 \section{\textit{Frameworks} híbridos}\label{sec:flutter}
 % Flutter 
-Um dos principais requisitos do projeto é que o aplicativo deve funcionar em diversos tipos de sistemas operacionais de dispositivos móveis. Os dois principais do mercado são o \textit{Android} e o \textit{iOS}, que representam a grande maioria dos dispositivos.
+Um dos principais requisitos do projeto, abordados com mais detalhes na Seção \ref{sec:requisitos}, é que o aplicativo deve funcionar em diversos tipos de sistemas operacionais de dispositivos móveis. Os dois principais do mercado são o \textit{Android} e o \textit{iOS}, que representam a grande maioria dos dispositivos.
 
 Com isso, as linguagens de programação nativas de cada sistema foram excluídas, e os dois principais \textit{frameworks} híbridos utilizados no mercado são o \textit{Flutter} e o \textit{React}.
 
-A decisão pela utilização do \textit{Flutter} aconteceu por alguns fatores. O principal deles foi o fato deste \textit{framework} ter sido lecionado durante uma disciplina cursada na graduação, outro fator foi em relação a existência de uma grande comunidade ativa e receptiva, que como consequência disso já produziu muitas documentações e tutoriais envolvendo a solução, e por último, a curva de aprendizado, que por conta da experiência prévia e da grande quantidade de materiais disponíveis na internet, se torna menor quando comparada ao \textit{React}.
+O \textit{framework} utilizado neste projeto é o \textit{Flutter} e essa decisão foi tomada por alguns fatores. O principal deles foi o fato dele ter sido lecionado durante uma disciplina cursada na graduação, outro fator foi em relação a existência de uma grande comunidade ativa e receptiva, que como consequência disso já produziu muitas documentações e tutoriais envolvendo a solução, e por último, a curva de aprendizado, que por conta da experiência prévia e da grande quantidade de materiais disponíveis na internet, se torna menor quando comparada ao \textit{React}.
 
 \section{Princípios SOLID}\label{sec:solid}
 % Principios SOLID
@@ -120,7 +118,7 @@ Em seu artigo, Robert afirma que o software está em constante mudança e evolu�
 
 O objetivo geral desses princípios é reduzir as dependências para que diferentes áreas possam evoluir independentemente sem impactar umas às outras. Além disso, também possuem o propósito de construir designs fáceis de serem entendidos, mantidos, estendidos, escalados, reutilizados e testados. Por fim, a adoção dessas práticas evitam que problemas comuns no processo de desenvolvimento sejam enfrentados e possibilita a construção de software ágil, adaptável e eficiente.
 
-Cada uma das letras do acrônimo representa um princípio, e são utilizados pela grande maioria dos sistemas desenvolvidos nos dias de hoje.
+Cada uma das letras do acrônimo representa um princípio, e são utilizados por muitos sistemas desenvolvidos atualmente.
 
 \subsection{Princípio da responsabilidade única}
 A letra “S” do acrônimo representa o \textit{Single Responsibility Principle}, esse princípio tem relação direta com a coesão. Isso quer dizer que uma classe só terá uma única responsabilidade bem definida.
@@ -136,7 +134,7 @@ A letra “O” representa o \textit{Open/Closed Principle}, esse princípio foi
 
 Ou seja, Robert está se referindo ao conceito abstrato da extensão. Usar heranças ou interfaces que permitem polimorfismo é uma das maneiras mais comuns de cumprir esse princípio.
 
-\subsection{Princípio substituição de Liskov}
+\subsection{Princípio substituição de Liskov}\label{sec:liskov}
 A letra “L” do acrônimo significa \textit{Liskov Substitution Principle}, esse princípio prega que uma classe derivada deve ser substituível por sua classe base; essa frase é a simplificação da definição científica que foi apresentada por \textcite{liskov} no artigo \textit{Behavioral Subtyping Using Invariants and Constraints}.
 
 A definição traduzida apresentada no artigo científico é:
@@ -247,7 +245,7 @@ Os \textit{pipelines} de \Sigla{\textit{Continuous Integration and Continuous De
 
 Existem diversas ferramentas de CI/CD, e a ferramenta escolhida foi o \textit{GitHub Actions}, porque possui integração perfeita com a central de repositórios \textit{git} que será utilizada, o \textit{GitHub}. Além disso, a ferramenta é gratuita, suporta as principais funcionalidades que um \textit{pipeline} precisa e possui boa documentação.
 
-\section{\textit{Serviços computacionais na nuvem}}\label{sec:googlefirebase}
+\section{Serviços computacionais na nuvem}\label{sec:googlefirebase}
 % Firebase
 Durante o processo de desenvolvimento, surgiu a necessidade do sistema possuir serviços remotos na nuvem, tais como BD e um servidor \textit{backend}, onde rotinas pudessem rodar independentemente do dispositivo móvel do usuário.
 
@@ -255,8 +253,8 @@ Essa necessidade trouxe o requisito de se utilizar serviços computacionais na n
 
 Esse provedor de nuvem é especializado em acelerar o processo de desenvolvimento de sistemas \textit{mobile}, fornecendo ferramentas de fácil configuração, auto gerenciadas e de alta qualidade.
 
-Os serviços que foram utilizados do provedor foi o BD orientado a documentos, o servidor \textit{backend} para executar as rotinas de rastreamento de contatos e um sistema de mensageria responsável por enviar ao \textit{backend} os eventos de escrita ocorridos em coleções específicas no BD.
+Os serviços que foram utilizados do provedor foi o BD orientado a documentos, o servidor \textit{backend} para executar as rotinas de rastreamento de contatos, que são ativadas a partir dos eventos de escrita ocorridos em coleções específicas no BD.
 
-Além da alta disponibilidade e confiabilidade dos serviços oferecidos pelo \textit{Firebase}, esse conjunto de tecnologias é uma escolha comum para aplicações móveis que utilizam \textit{Flutter}. A comunidade de desenvolvimento possui diversos tutoriais e documentações que abrangem os mais diversos casos de uso que podem ser utilizados em conjunto, o que facilitou o processo de desenvolvimento.
+Além da alta disponibilidade e confiabilidade dos serviços oferecidos pelo \textit{Firebase}, esse conjunto de tecnologias é uma escolha comum para aplicações móveis. A comunidade de desenvolvimento possui diversos tutoriais e documentações que abrangem os mais diversos casos de uso que podem ser utilizados em conjunto, o que facilitou o processo de desenvolvimento.
 
-Cada um dos recursos oferecidos pela plataforma são explicados no Capítulo \ref{chp:infraestrutura}, e a forma de como foram utilizados está descrita no Capítulo \ref{chp:desenvolvimento}.
+Cada um dos recursos utilizados da plataforma são explicados no Capítulo \ref{chp:infraestrutura}, e a forma de como foram utilizados está descrita no Capítulo \ref{chp:desenvolvimento}.
