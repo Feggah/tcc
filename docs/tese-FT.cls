@@ -516,7 +516,7 @@
     \vfill
       \supresshyphen
       \noindent
-       Ata da defesa, assinada pelos membros da Comissão Examinadora, consta no SIGA/Sistema de Fluxo de Dissertação/Tese e na Secretaria de Pós Graduação da FT.
+       Ata da monografia, assinada pelos membros da Comissão Examinadora, consta no SIGA/Trabalho de Conclusão de Curso/Monografia e na Secretaria de Graduação da FT.
     \vfill
   \else
     Na versão final, esta página será substituída por outra
